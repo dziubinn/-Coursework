@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 
 namespace Сoursework.Models
 {
@@ -40,6 +42,23 @@ namespace Сoursework.Models
             if (index == -1) return false;
             movies[index] = updatedMovie;
             return true;
+        }
+
+        public void SaveToFile(string filePath)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(movies, options);
+            File.WriteAllText(filePath, json);
+        }
+
+        public void LoadFromFile(string filePath)
+        {
+            if (!File.Exists(filePath)) return;
+
+            string json = File.ReadAllText(filePath);
+            var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json);
+
+            if (loadedMovies != null) movies = loadedMovies;
         }
     }
 }
