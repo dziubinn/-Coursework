@@ -58,6 +58,7 @@ namespace Сoursework.Models
             string json = File.ReadAllText(filePath);
             var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json);
 
+
             if (loadedMovies != null) movies = loadedMovies;
         }
     }

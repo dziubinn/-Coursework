@@ -20,7 +20,8 @@ namespace Сoursework
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            movieLibrary.LoadFromFile("movies.json");
+            string filePath = Path.Combine(Application.StartupPath, "movies.json");
+            movieLibrary.LoadFromFile(filePath);
             cmbFilterBy.Items.AddRange(new string[]
             {
                 "Genre",
