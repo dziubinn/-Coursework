@@ -6,14 +6,22 @@ using Сoursework;
 
 public class MovieCardControl : UserControl
 {
+    public bool IsSelected { get; private set; }
+    private Color originalBackColor;
     private Label lblTitleYearGenre;
     private Button btnDetails;
-
     private Movie currentMovie;
+    public Movie Movie { get; private set; }
 
     public MovieCardControl()
     {
         InitializeComponents();
+        originalBackColor = this.BackColor;
+        this.Click += MovieCardControl_Click;
+        foreach (Control control in this.Controls)
+        {
+            control.Click += MovieCardControl_Click;
+        }
     }
 
     private Label lblTitle;
@@ -62,16 +70,15 @@ public class MovieCardControl : UserControl
         this.Controls.Add(btnDetails);
     }
 
-
     public void SetMovie(Movie movie)
     {
         currentMovie = movie;
+        Movie = movie;
 
         lblTitle.Text = movie.Title;
         lblInfo.Text = $"{movie.Year}  {movie.Duration}m  {movie.Genre}";
         lblRating.Text = $"★ {movie.Rating:F1}";
     }
-
 
     private void BtnDetails_Click(object sender, EventArgs e)
     {
@@ -80,5 +87,16 @@ public class MovieCardControl : UserControl
             var detailsForm = new MovieDetailsForm(currentMovie);
             detailsForm.ShowDialog();
         }
+    }
+
+    private void MovieCardControl_Click(object sender, EventArgs e)
+    {
+        IsSelected = !IsSelected;
+        this.BackColor = IsSelected ? Color.AntiqueWhite : originalBackColor;
+    }
+    public void Deselect()
+    {
+        IsSelected = false;
+        this.BackColor = originalBackColor;
     }
 }

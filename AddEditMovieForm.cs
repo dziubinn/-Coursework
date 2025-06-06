@@ -14,19 +14,39 @@ namespace Сoursework
         public AddEditMovieForm(Movie movie = null)
         {
             InitializeComponent();
+
             if (movie != null)
             {
                 isEditMode = true;
                 Text = "Edit Movie";
-                Movie = movie;
-                FillFormWithMovie(movie);
+
+                Movie = new Movie
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Studio = movie.Studio,
+                    Genre = movie.Genre,
+                    Year = movie.Year,
+                    Country = movie.Country,
+                    Director = movie.Director,
+                    MainActors = movie.MainActors,
+                    Description = movie.Description,
+                    Rating = movie.Rating,
+                    Duration = movie.Duration,
+                    Watched = movie.Watched,
+                    IsFavorite = movie.IsFavorite
+                };
+
+                FillFormWithMovie(Movie);
             }
             else
             {
+                isEditMode = false;
                 Text = "Add Movie";
                 Movie = new Movie();
             }
         }
+
 
         private void FillFormWithMovie(Movie movie)
         {

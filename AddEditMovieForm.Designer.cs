@@ -308,12 +308,12 @@
             // 
             label13.Anchor = AnchorStyles.Top;
             label13.AutoSize = true;
-            label13.Font = new Font("Bauhaus 93", 28.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(484, 61);
+            label13.Font = new Font("Bauhaus 93", 20.2F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(428, 54);
             label13.Name = "label13";
-            label13.Size = new Size(333, 43);
+            label13.Size = new Size(322, 30);
             label13.TabIndex = 26;
-            label13.Text = "Add your movie!🎥";
+            label13.Text = "Add or edit your movie!🎥";
             // 
             // AddEditMovieForm
             // 

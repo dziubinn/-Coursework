@@ -30,6 +30,14 @@ namespace Сoursework.Models
             return movies.Remove(movie);
 
         }
+        public void UpdateMovie(Movie updatedMovie)
+        {
+            var index = movies.FindIndex(m => m.Id == updatedMovie.Id);
+            if (index >= 0)
+                movies[index] = updatedMovie;
+        }
+
+
 
         public Movie FindMovie(string title)
         {

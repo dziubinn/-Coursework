@@ -84,7 +84,27 @@ namespace Сoursework
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
+            var selectedCard = flowPanelMovies.Controls
+                .OfType<MovieCardControl>()
+                .FirstOrDefault(c => c.IsSelected);
+
+            if (selectedCard == null)
+            {
+                MessageBox.Show("Будь ласка, виберіть фільм для редагування.");
+                return;
+            }
+
+            var selectedMovie = selectedCard.Movie;
+
+            var editForm = new AddEditMovieForm(selectedMovie);
+
+            if (editForm.ShowDialog() == DialogResult.OK)
+            {
+                movieLibrary.UpdateMovie(editForm.Movie);
+                RefreshMovieCards();
+            }
         }
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {

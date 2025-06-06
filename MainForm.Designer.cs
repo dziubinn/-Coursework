@@ -83,6 +83,7 @@
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
@@ -227,8 +228,9 @@
             ResumeLayout(false);
         }
 
-        #endregion
 
+        #endregion
+       
         private FlowLayoutPanel flowPanelControls;
         private Button btnAdd;
         private Button btnEdit;
