@@ -121,7 +121,7 @@ namespace Сoursework
                     Text = "No movies found",
                     AutoSize = true,
                     ForeColor = Color.Red,
-                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Font = new Font("Arial", 13, FontStyle.Bold),
                     Padding = new Padding(10)
                 };
                 flowPanelMovies.Controls.Add(noResults);
