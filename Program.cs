@@ -8,10 +8,10 @@ namespace Сoursework
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new WelcomeForm());
+            Application.SetHighDpiMode(HighDpiMode.SystemAware); // или PerMonitor, в зависимости от настроек
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
         }
     }
 }

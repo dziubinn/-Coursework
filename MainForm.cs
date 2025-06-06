@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Сoursework.Models;
@@ -17,11 +18,14 @@ namespace Сoursework
         public MainForm()
         {
             InitializeComponent();
+            this.Load += MainForm_Load;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
+            //MessageBox.Show("Шукаємо файл тут:\n" + filePath);
             movieLibrary.LoadFromFile(filePath);
+
             cmbFilterBy.Items.AddRange(new string[]
             {
                 "Genre",
@@ -32,6 +36,13 @@ namespace Сoursework
                 "Duration",
                 "Studio"
             });
+
+            RefreshMovieCards();
+        }
+        public void SaveMoviesToFile(string filePath)
+        {
+            string json = JsonSerializer.Serialize(movieLibrary, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
         }
         private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,9 +119,35 @@ namespace Сoursework
             if (cmbFilterValue.Items.Count > 0)
                 cmbFilterValue.SelectedIndex = 0;
         }
+        private void RefreshMovieCards()
+        {
+            flowPanelMovies.Controls.Clear();
+
+            foreach (var movie in movieLibrary.GetAllMovies())
+            {
+                var card = new MovieCardControl();
+                card.SetMovie(movie);
+                flowPanelMovies.Controls.Add(card);
+            }
+        }
+
+
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            var form = new AddEditMovieForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    movieLibrary.AddMovie(form.Movie);
+                    RefreshMovieCards();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

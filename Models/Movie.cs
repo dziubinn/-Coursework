@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Сoursework.Models
 {
     public class Movie
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Studio { get; set; }
         public string Genre { get; set; }
@@ -17,10 +13,9 @@ namespace Сoursework.Models
         public string Director { get; set; }
         public string MainActors { get; set; }
         public string Description { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
         public int Duration { get; set; }
         public bool Watched { get; set; }
         public bool IsFavorite { get; set; }
-
     }
 }

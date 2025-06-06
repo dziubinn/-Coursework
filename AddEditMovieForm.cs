@@ -40,7 +40,7 @@ namespace Сoursework
 
             numYear.Value = movie.Year;
             numDuration.Value = movie.Duration;
-            numRating.Value = movie.Rating;
+            numRating.Value = (decimal)movie.Rating;
 
             chkWatched.Checked = movie.Watched;
             chkFavorite.Checked = movie.IsFavorite;

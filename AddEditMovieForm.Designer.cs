@@ -56,6 +56,7 @@
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)numYear).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numDuration).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
@@ -109,7 +110,7 @@
             txtDescription.Location = new Point(173, 445);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(612, 89);
+            txtDescription.Size = new Size(644, 89);
             txtDescription.TabIndex = 6;
             // 
             // numYear
@@ -161,7 +162,7 @@
             btnOK.Anchor = AnchorStyles.Top;
             btnOK.BackColor = Color.LightGreen;
             btnOK.Font = new Font("Bauhaus 93", 10.8F);
-            btnOK.Location = new Point(268, 626);
+            btnOK.Location = new Point(284, 626);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(118, 34);
             btnOK.TabIndex = 12;
@@ -174,7 +175,7 @@
             btnCancel.Anchor = AnchorStyles.Top;
             btnCancel.BackColor = Color.LightPink;
             btnCancel.Font = new Font("Bauhaus 93", 10.8F);
-            btnCancel.Location = new Point(452, 627);
+            btnCancel.Location = new Point(468, 627);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(140, 34);
             btnCancel.TabIndex = 13;
@@ -303,10 +304,22 @@
             label12.TabIndex = 25;
             label12.Text = "Favorite:";
             // 
+            // label13
+            // 
+            label13.Anchor = AnchorStyles.Top;
+            label13.AutoSize = true;
+            label13.Font = new Font("Bauhaus 93", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(395, 15);
+            label13.Name = "label13";
+            label13.Size = new Size(360, 53);
+            label13.TabIndex = 26;
+            label13.Text = "Add your movie!";
+            // 
             // AddEditMovieForm
             // 
             BackColor = Color.PeachPuff;
-            ClientSize = new Size(855, 685);
+            ClientSize = new Size(887, 680);
+            Controls.Add(label13);
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label10);
@@ -336,7 +349,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
-            MinimumSize = new Size(555, 727);
+            MinimumSize = new Size(905, 727);
             Name = "AddEditMovieForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Add/Edit Movie";
@@ -358,5 +371,6 @@
         private Label label10;
         private Label label11;
         private Label label12;
+        private Label label13;
     }
 }

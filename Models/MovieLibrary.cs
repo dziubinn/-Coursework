@@ -12,6 +12,11 @@ namespace Сoursework.Models
     {
         private List<Movie> movies = new List<Movie>();
 
+        public List<Movie> GetAllMovies()
+        {
+            return movies;
+        }
+
         public void AddMovie(Movie movie)
         {
             if (movies.Any(m => m.Title == movie.Title && m.Year == movie.Year))
@@ -31,10 +36,6 @@ namespace Сoursework.Models
             return movies.FirstOrDefault(m => m.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
         }
 
-        public List<Movie> GetAllMovies()
-        {
-            return new List<Movie>(movies);
-        }
 
         public bool EditMovie(string title, Movie updatedMovie)
         {
@@ -53,13 +54,12 @@ namespace Сoursework.Models
 
         public void LoadFromFile(string filePath)
         {
-            if (!File.Exists(filePath)) return;
+            if (!File.Exists(filePath))
+                return;
 
             string json = File.ReadAllText(filePath);
-            var loadedMovies = JsonSerializer.Deserialize<List<Movie>>(json);
-
-
-            if (loadedMovies != null) movies = loadedMovies;
+            movies = JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
+
     }
 }

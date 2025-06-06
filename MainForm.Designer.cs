@@ -36,51 +36,48 @@
             btnSave = new Button();
             btnSearch = new Button();
             btnFilter = new Button();
-            dataGridViewMovies = new DataGridView();
             PanelSearch = new Panel();
             cmbFilterValue = new ComboBox();
             cmbFilterBy = new ComboBox();
             txtSearch = new TextBox();
+            flowPanelMovies = new FlowLayoutPanel();
             flowPanelControls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewMovies).BeginInit();
             PanelSearch.SuspendLayout();
             SuspendLayout();
             // 
             // flowPanelControls
             // 
             flowPanelControls.Anchor = AnchorStyles.Top;
-            flowPanelControls.BackColor = Color.PaleGoldenrod;
+            flowPanelControls.BackColor = Color.PeachPuff;
             flowPanelControls.BorderStyle = BorderStyle.FixedSingle;
             flowPanelControls.Controls.Add(btnAdd);
             flowPanelControls.Controls.Add(btnEdit);
             flowPanelControls.Controls.Add(btnDelete);
             flowPanelControls.Controls.Add(btnLoad);
             flowPanelControls.Controls.Add(btnSave);
-            flowPanelControls.Location = new Point(347, 1);
-            flowPanelControls.Margin = new Padding(3, 4, 3, 4);
+            flowPanelControls.Location = new Point(152, 1);
             flowPanelControls.Name = "flowPanelControls";
-            flowPanelControls.Size = new Size(602, 45);
+            flowPanelControls.Size = new Size(533, 34);
             flowPanelControls.TabIndex = 0;
             flowPanelControls.WrapContents = false;
             // 
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.Popup;
-            btnAdd.Location = new Point(3, 4);
-            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Location = new Point(3, 3);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(114, 31);
+            btnAdd.Size = new Size(100, 23);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
             btnEdit.FlatStyle = FlatStyle.Popup;
-            btnEdit.Location = new Point(123, 4);
-            btnEdit.Margin = new Padding(3, 4, 3, 4);
+            btnEdit.Location = new Point(109, 3);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(114, 31);
+            btnEdit.Size = new Size(100, 23);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
@@ -88,10 +85,9 @@
             // btnDelete
             // 
             btnDelete.FlatStyle = FlatStyle.Popup;
-            btnDelete.Location = new Point(243, 4);
-            btnDelete.Margin = new Padding(3, 4, 3, 4);
+            btnDelete.Location = new Point(215, 3);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(114, 31);
+            btnDelete.Size = new Size(100, 23);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -100,10 +96,9 @@
             // 
             btnLoad.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnLoad.FlatStyle = FlatStyle.Popup;
-            btnLoad.Location = new Point(363, 4);
-            btnLoad.Margin = new Padding(3, 4, 3, 4);
+            btnLoad.Location = new Point(321, 3);
             btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(114, 31);
+            btnLoad.Size = new Size(100, 23);
             btnLoad.TabIndex = 5;
             btnLoad.Text = "Load";
             btnLoad.UseVisualStyleBackColor = true;
@@ -112,10 +107,9 @@
             // 
             btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnSave.FlatStyle = FlatStyle.Popup;
-            btnSave.Location = new Point(483, 4);
-            btnSave.Margin = new Padding(3, 4, 3, 4);
+            btnSave.Location = new Point(427, 3);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(114, 31);
+            btnSave.Size = new Size(100, 23);
             btnSave.TabIndex = 6;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -123,10 +117,9 @@
             // btnSearch
             // 
             btnSearch.FlatStyle = FlatStyle.Popup;
-            btnSearch.Location = new Point(265, 17);
-            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Location = new Point(232, 13);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(114, 31);
+            btnSearch.Size = new Size(100, 23);
             btnSearch.TabIndex = 3;
             btnSearch.Text = "Search🔍";
             btnSearch.UseVisualStyleBackColor = true;
@@ -135,26 +128,12 @@
             // btnFilter
             // 
             btnFilter.FlatStyle = FlatStyle.Popup;
-            btnFilter.Location = new Point(441, 75);
-            btnFilter.Margin = new Padding(3, 4, 3, 4);
+            btnFilter.Location = new Point(386, 56);
             btnFilter.Name = "btnFilter";
-            btnFilter.Size = new Size(114, 31);
+            btnFilter.Size = new Size(100, 23);
             btnFilter.TabIndex = 4;
             btnFilter.Text = "Filter";
             btnFilter.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewMovies
-            // 
-            dataGridViewMovies.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewMovies.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewMovies.BackgroundColor = Color.WhiteSmoke;
-            dataGridViewMovies.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewMovies.Location = new Point(1, 327);
-            dataGridViewMovies.Margin = new Padding(3, 4, 3, 4);
-            dataGridViewMovies.Name = "dataGridViewMovies";
-            dataGridViewMovies.RowHeadersWidth = 51;
-            dataGridViewMovies.Size = new Size(1286, 376);
-            dataGridViewMovies.TabIndex = 1;
             // 
             // PanelSearch
             // 
@@ -165,54 +144,57 @@
             PanelSearch.Controls.Add(txtSearch);
             PanelSearch.Controls.Add(btnSearch);
             PanelSearch.Controls.Add(btnFilter);
-            PanelSearch.Location = new Point(357, 63);
-            PanelSearch.Margin = new Padding(3, 4, 3, 4);
+            PanelSearch.Location = new Point(160, 47);
             PanelSearch.Name = "PanelSearch";
-            PanelSearch.Size = new Size(576, 200);
+            PanelSearch.Size = new Size(504, 150);
             PanelSearch.TabIndex = 5;
             // 
             // cmbFilterValue
             // 
             cmbFilterValue.FormattingEnabled = true;
-            cmbFilterValue.Location = new Point(265, 75);
-            cmbFilterValue.Margin = new Padding(3, 4, 3, 4);
+            cmbFilterValue.Location = new Point(232, 56);
             cmbFilterValue.Name = "cmbFilterValue";
-            cmbFilterValue.Size = new Size(138, 28);
+            cmbFilterValue.Size = new Size(121, 23);
             cmbFilterValue.TabIndex = 6;
             // 
             // cmbFilterBy
             // 
             cmbFilterBy.FormattingEnabled = true;
             cmbFilterBy.Items.AddRange(new object[] { "Genre", "Year", "Director", "Country", "Main actor", "Duration", "Studio" });
-            cmbFilterBy.Location = new Point(17, 75);
-            cmbFilterBy.Margin = new Padding(3, 4, 3, 4);
+            cmbFilterBy.Location = new Point(15, 56);
             cmbFilterBy.Name = "cmbFilterBy";
-            cmbFilterBy.Size = new Size(221, 28);
+            cmbFilterBy.Size = new Size(194, 23);
             cmbFilterBy.TabIndex = 5;
             cmbFilterBy.SelectedIndexChanged += cmbFilterBy_SelectedIndexChanged;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(17, 17);
-            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Location = new Point(15, 13);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(221, 27);
+            txtSearch.Size = new Size(194, 23);
             txtSearch.TabIndex = 4;
+            // 
+            // flowPanelMovies
+            // 
+            flowPanelMovies.AutoScroll = true;
+            flowPanelMovies.Dock = DockStyle.Bottom;
+            flowPanelMovies.Location = new Point(0, 251);
+            flowPanelMovies.Name = "flowPanelMovies";
+            flowPanelMovies.Size = new Size(823, 354);
+            flowPanelMovies.TabIndex = 6;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1288, 704);
+            ClientSize = new Size(823, 605);
+            Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
-            Controls.Add(dataGridViewMovies);
             Controls.Add(flowPanelControls);
-            Margin = new Padding(3, 4, 3, 4);
-            MinimumSize = new Size(631, 47);
+            MinimumSize = new Size(554, 602);
             Name = "MainForm";
             Text = "MainForm";
             flowPanelControls.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewMovies).EndInit();
             PanelSearch.ResumeLayout(false);
             PanelSearch.PerformLayout();
             ResumeLayout(false);
@@ -228,10 +210,10 @@
         private Button btnFilter;
         private Button btnLoad;
         private Button btnSave;
-        private DataGridView dataGridViewMovies;
         private Panel PanelSearch;
         private ComboBox cmbFilterBy;
         private TextBox txtSearch;
         private ComboBox cmbFilterValue;
+        private FlowLayoutPanel flowPanelMovies;
     }
 }
