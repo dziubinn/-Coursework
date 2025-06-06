@@ -35,17 +35,18 @@
             lblStudio = new Label();
             lblCountry = new Label();
             lblRating = new Label();
-            lblDirectorText = new Label();
-            lblActorText = new Label();
             lblDirector = new Label();
             lblMainActor = new Label();
+            lblDescription = new Label();
+            panelDetails = new Panel();
+            panelDetails.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Bauhaus 93", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitle.Location = new Point(23, 9);
+            lblTitle.Location = new Point(21, 16);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(75, 25);
             lblTitle.TabIndex = 0;
@@ -54,7 +55,7 @@
             // lblYear
             // 
             lblYear.AutoSize = true;
-            lblYear.Location = new Point(23, 52);
+            lblYear.Location = new Point(21, 63);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(38, 15);
             lblYear.TabIndex = 1;
@@ -63,7 +64,7 @@
             // lblDuration
             // 
             lblDuration.AutoSize = true;
-            lblDuration.Location = new Point(83, 52);
+            lblDuration.Location = new Point(89, 63);
             lblDuration.Name = "lblDuration";
             lblDuration.Size = new Size(38, 15);
             lblDuration.TabIndex = 2;
@@ -72,7 +73,7 @@
             // lblGenre
             // 
             lblGenre.AutoSize = true;
-            lblGenre.Location = new Point(133, 52);
+            lblGenre.Location = new Point(159, 63);
             lblGenre.Name = "lblGenre";
             lblGenre.Size = new Size(38, 15);
             lblGenre.TabIndex = 3;
@@ -81,16 +82,17 @@
             // lblStudio
             // 
             lblStudio.AutoSize = true;
-            lblStudio.Location = new Point(23, 87);
+            lblStudio.Location = new Point(21, 206);
             lblStudio.Name = "lblStudio";
             lblStudio.Size = new Size(38, 15);
             lblStudio.TabIndex = 4;
             lblStudio.Text = "label1";
+            lblStudio.Click += lblStudio_Click;
             // 
             // lblCountry
             // 
             lblCountry.AutoSize = true;
-            lblCountry.Location = new Point(83, 87);
+            lblCountry.Location = new Point(21, 172);
             lblCountry.Name = "lblCountry";
             lblCountry.Size = new Size(38, 15);
             lblCountry.TabIndex = 5;
@@ -99,34 +101,16 @@
             // lblRating
             // 
             lblRating.AutoSize = true;
-            lblRating.Location = new Point(23, 119);
+            lblRating.Location = new Point(89, 96);
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(38, 15);
             lblRating.TabIndex = 6;
             lblRating.Text = "label3";
             // 
-            // lblDirectorText
-            // 
-            lblDirectorText.AutoSize = true;
-            lblDirectorText.Location = new Point(23, 154);
-            lblDirectorText.Name = "lblDirectorText";
-            lblDirectorText.Size = new Size(52, 15);
-            lblDirectorText.TabIndex = 7;
-            lblDirectorText.Text = "Director ";
-            // 
-            // lblActorText
-            // 
-            lblActorText.AutoSize = true;
-            lblActorText.Location = new Point(23, 191);
-            lblActorText.Name = "lblActorText";
-            lblActorText.Size = new Size(69, 15);
-            lblActorText.TabIndex = 8;
-            lblActorText.Text = "Main actors";
-            // 
             // lblDirector
             // 
             lblDirector.AutoSize = true;
-            lblDirector.Location = new Point(83, 154);
+            lblDirector.Location = new Point(21, 96);
             lblDirector.Name = "lblDirector";
             lblDirector.Size = new Size(38, 15);
             lblDirector.TabIndex = 9;
@@ -135,32 +119,56 @@
             // lblMainActor
             // 
             lblMainActor.AutoSize = true;
-            lblMainActor.Location = new Point(116, 191);
+            lblMainActor.Location = new Point(21, 128);
             lblMainActor.Name = "lblMainActor";
             lblMainActor.Size = new Size(38, 15);
             lblMainActor.TabIndex = 10;
             lblMainActor.Text = "label2";
             // 
+            // lblDescription
+            // 
+            lblDescription.AutoSize = true;
+            lblDescription.BackColor = Color.OldLace;
+            lblDescription.Location = new Point(21, 245);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(38, 15);
+            lblDescription.TabIndex = 11;
+            lblDescription.Text = "label1";
+            lblDescription.Click += label1_Click;
+            // 
+            // panelDetails
+            // 
+            panelDetails.Anchor = AnchorStyles.Top;
+            panelDetails.BackColor = Color.SeaShell;
+            panelDetails.Controls.Add(lblTitle);
+            panelDetails.Controls.Add(lblDescription);
+            panelDetails.Controls.Add(lblRating);
+            panelDetails.Controls.Add(lblStudio);
+            panelDetails.Controls.Add(lblCountry);
+            panelDetails.Controls.Add(lblMainActor);
+            panelDetails.Controls.Add(lblYear);
+            panelDetails.Controls.Add(lblDirector);
+            panelDetails.Controls.Add(lblDuration);
+            panelDetails.Controls.Add(lblGenre);
+            panelDetails.Location = new Point(12, 12);
+            panelDetails.Name = "panelDetails";
+            panelDetails.Size = new Size(484, 318);
+            panelDetails.TabIndex = 12;
+            // 
             // MovieDetailsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lblMainActor);
-            Controls.Add(lblDirector);
-            Controls.Add(lblActorText);
-            Controls.Add(lblDirectorText);
-            Controls.Add(lblRating);
-            Controls.Add(lblCountry);
-            Controls.Add(lblStudio);
-            Controls.Add(lblGenre);
-            Controls.Add(lblDuration);
-            Controls.Add(lblYear);
-            Controls.Add(lblTitle);
+            BackColor = Color.SeaShell;
+            ClientSize = new Size(508, 344);
+            Controls.Add(panelDetails);
+            MaximumSize = new Size(524, 383);
+            MinimumSize = new Size(524, 383);
             Name = "MovieDetailsForm";
             Text = "MovieDetailsForm";
+            panelDetails.ResumeLayout(false);
+            panelDetails.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -172,9 +180,10 @@
         private Label lblStudio;
         private Label lblCountry;
         private Label lblRating;
-        private Label lblDirectorText;
-        private Label lblActorText;
         private Label lblDirector;
         private Label lblMainActor;
+        private Label lblDescription;
+        private Panel panelDetails;
     }
+
 }

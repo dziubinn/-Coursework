@@ -37,6 +37,8 @@
             btnSearch = new Button();
             btnFilter = new Button();
             PanelSearch = new Panel();
+            SearchFilterslbl = new Label();
+            TitleNamelbl = new Label();
             cmbFilterValue = new ComboBox();
             cmbFilterBy = new ComboBox();
             txtSearch = new TextBox();
@@ -55,7 +57,7 @@
             flowPanelControls.Controls.Add(btnDelete);
             flowPanelControls.Controls.Add(btnLoad);
             flowPanelControls.Controls.Add(btnSave);
-            flowPanelControls.Location = new Point(152, 1);
+            flowPanelControls.Location = new Point(71, 0);
             flowPanelControls.Name = "flowPanelControls";
             flowPanelControls.Size = new Size(533, 34);
             flowPanelControls.TabIndex = 0;
@@ -113,11 +115,12 @@
             btnSave.TabIndex = 6;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click_1;
             // 
             // btnSearch
             // 
             btnSearch.FlatStyle = FlatStyle.Popup;
-            btnSearch.Location = new Point(232, 13);
+            btnSearch.Location = new Point(215, 49);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 23);
             btnSearch.TabIndex = 3;
@@ -128,40 +131,63 @@
             // btnFilter
             // 
             btnFilter.FlatStyle = FlatStyle.Popup;
-            btnFilter.Location = new Point(386, 56);
+            btnFilter.Location = new Point(215, 194);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
             btnFilter.TabIndex = 4;
             btnFilter.Text = "Filter";
             btnFilter.UseVisualStyleBackColor = true;
+            btnFilter.Click += btnFilter_Click_1;
             // 
             // PanelSearch
             // 
-            PanelSearch.Anchor = AnchorStyles.Top;
+            PanelSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             PanelSearch.BorderStyle = BorderStyle.FixedSingle;
+            PanelSearch.Controls.Add(SearchFilterslbl);
+            PanelSearch.Controls.Add(TitleNamelbl);
             PanelSearch.Controls.Add(cmbFilterValue);
             PanelSearch.Controls.Add(cmbFilterBy);
             PanelSearch.Controls.Add(txtSearch);
             PanelSearch.Controls.Add(btnSearch);
             PanelSearch.Controls.Add(btnFilter);
-            PanelSearch.Location = new Point(160, 47);
+            PanelSearch.Location = new Point(10, 40);
             PanelSearch.Name = "PanelSearch";
-            PanelSearch.Size = new Size(504, 150);
+            PanelSearch.Size = new Size(328, 511);
             PanelSearch.TabIndex = 5;
+            // 
+            // SearchFilterslbl
+            // 
+            SearchFilterslbl.AutoSize = true;
+            SearchFilterslbl.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchFilterslbl.Location = new Point(15, 108);
+            SearchFilterslbl.Name = "SearchFilterslbl";
+            SearchFilterslbl.Size = new Size(121, 21);
+            SearchFilterslbl.TabIndex = 8;
+            SearchFilterslbl.Text = "Search filters";
+            // 
+            // TitleNamelbl
+            // 
+            TitleNamelbl.AutoSize = true;
+            TitleNamelbl.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            TitleNamelbl.Location = new Point(15, 26);
+            TitleNamelbl.Name = "TitleNamelbl";
+            TitleNamelbl.Size = new Size(101, 21);
+            TitleNamelbl.TabIndex = 7;
+            TitleNamelbl.Text = "Title name";
             // 
             // cmbFilterValue
             // 
             cmbFilterValue.FormattingEnabled = true;
-            cmbFilterValue.Location = new Point(232, 56);
+            cmbFilterValue.Location = new Point(15, 194);
             cmbFilterValue.Name = "cmbFilterValue";
-            cmbFilterValue.Size = new Size(121, 23);
+            cmbFilterValue.Size = new Size(194, 23);
             cmbFilterValue.TabIndex = 6;
             // 
             // cmbFilterBy
             // 
             cmbFilterBy.FormattingEnabled = true;
             cmbFilterBy.Items.AddRange(new object[] { "Genre", "Year", "Director", "Country", "Main actor", "Duration", "Studio" });
-            cmbFilterBy.Location = new Point(15, 56);
+            cmbFilterBy.Location = new Point(15, 132);
             cmbFilterBy.Name = "cmbFilterBy";
             cmbFilterBy.Size = new Size(194, 23);
             cmbFilterBy.TabIndex = 5;
@@ -169,29 +195,29 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(15, 13);
+            txtSearch.Location = new Point(15, 50);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(194, 23);
             txtSearch.TabIndex = 4;
             // 
             // flowPanelMovies
             // 
+            flowPanelMovies.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flowPanelMovies.AutoScroll = true;
-            flowPanelMovies.Dock = DockStyle.Bottom;
-            flowPanelMovies.Location = new Point(0, 251);
+            flowPanelMovies.Location = new Point(344, 40);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(823, 354);
+            flowPanelMovies.Size = new Size(331, 511);
             flowPanelMovies.TabIndex = 6;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(823, 605);
+            ClientSize = new Size(675, 563);
             Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
             Controls.Add(flowPanelControls);
-            MinimumSize = new Size(554, 602);
+            MinimumSize = new Size(690, 602);
             Name = "MainForm";
             Text = "MainForm";
             flowPanelControls.ResumeLayout(false);
@@ -215,5 +241,7 @@
         private TextBox txtSearch;
         private ComboBox cmbFilterValue;
         private FlowLayoutPanel flowPanelMovies;
+        private Label SearchFilterslbl;
+        private Label TitleNamelbl;
     }
 }

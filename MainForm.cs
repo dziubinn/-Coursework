@@ -19,11 +19,11 @@ namespace Сoursework
         {
             InitializeComponent();
             this.Load += MainForm_Load;
+            flowPanelMovies.Resize += (s, e) => CenterFlowPanelContents();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
-            //MessageBox.Show("Шукаємо файл тут:\n" + filePath);
             movieLibrary.LoadFromFile(filePath);
 
             cmbFilterBy.Items.AddRange(new string[]
@@ -38,6 +38,24 @@ namespace Сoursework
             });
 
             RefreshMovieCards();
+        }
+        private void CenterFlowPanelContents()
+        {
+            int totalWidth = flowPanelMovies.Controls
+                .Cast<Control>()
+                .Sum(c => c.Width + c.Margin.Left + c.Margin.Right);
+
+            int availableWidth = flowPanelMovies.ClientSize.Width;
+
+            if (totalWidth < availableWidth)
+            {
+                int leftMargin = (availableWidth - totalWidth) / 2;
+                flowPanelMovies.Padding = new Padding(leftMargin, 0, 0, 0);
+            }
+            else
+            {
+                flowPanelMovies.Padding = new Padding(0);
+            }
         }
         public void SaveMoviesToFile(string filePath)
         {
@@ -198,6 +216,16 @@ namespace Сoursework
             }).ToList();
 
             MessageBox.Show($"Found {filtered.Count} movies by filter");
+        }
+
+        private void btnFilter_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
