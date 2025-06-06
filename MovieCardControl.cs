@@ -31,6 +31,8 @@ public class MovieCardControl : UserControl
         lblTitle.Size = new Size(220, 25);
         lblTitle.Font = new Font("Arial", 12, FontStyle.Bold);
         lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+        lblTitle.AutoEllipsis = true;
+        lblTitle.UseCompatibleTextRendering = true;
 
         lblInfo = new Label();
         lblInfo.Location = new Point(10, 30);

@@ -50,7 +50,7 @@
             // flowPanelControls
             // 
             flowPanelControls.Anchor = AnchorStyles.Top;
-            flowPanelControls.BackColor = Color.PeachPuff;
+            flowPanelControls.BackColor = Color.AntiqueWhite;
             flowPanelControls.BorderStyle = BorderStyle.FixedSingle;
             flowPanelControls.Controls.Add(btnAdd);
             flowPanelControls.Controls.Add(btnEdit);
@@ -131,13 +131,13 @@
             // btnFilter
             // 
             btnFilter.FlatStyle = FlatStyle.Popup;
-            btnFilter.Location = new Point(215, 194);
+            btnFilter.Location = new Point(215, 284);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
             btnFilter.TabIndex = 4;
             btnFilter.Text = "Filter";
             btnFilter.UseVisualStyleBackColor = true;
-            btnFilter.Click += btnFilter_Click_1;
+            btnFilter.Click += btnFilter_Click;
             // 
             // PanelSearch
             // 
@@ -178,10 +178,11 @@
             // cmbFilterValue
             // 
             cmbFilterValue.FormattingEnabled = true;
-            cmbFilterValue.Location = new Point(15, 194);
+            cmbFilterValue.Location = new Point(15, 284);
             cmbFilterValue.Name = "cmbFilterValue";
             cmbFilterValue.Size = new Size(194, 23);
             cmbFilterValue.TabIndex = 6;
+            cmbFilterValue.SelectedIndexChanged += cmbFilterValue_SelectedIndexChanged;
             // 
             // cmbFilterBy
             // 

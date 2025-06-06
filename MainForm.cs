@@ -19,124 +19,36 @@ namespace Сoursework
         {
             InitializeComponent();
             this.Load += MainForm_Load;
-            flowPanelMovies.Resize += (s, e) => CenterFlowPanelContents();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.LoadFromFile(filePath);
+            movies = movieLibrary.GetAllMovies();
+            txtSearch.KeyDown += TxtSearch_KeyDown;
+
+            cmbFilterBy.Items.Clear();
 
             cmbFilterBy.Items.AddRange(new string[]
             {
-                "Genre",
-                "Year",
-                "Director",
-                "Country",
-                "Main actor",
-                "Duration",
-                "Studio"
+        "Genre",
+        "Year",
+        "Director",
+        "Country",
+        "Main actor",
+        "Duration",
+        "Studio"
             });
 
             RefreshMovieCards();
         }
-        private void CenterFlowPanelContents()
-        {
-            int totalWidth = flowPanelMovies.Controls
-                .Cast<Control>()
-                .Sum(c => c.Width + c.Margin.Left + c.Margin.Right);
 
-            int availableWidth = flowPanelMovies.ClientSize.Width;
-
-            if (totalWidth < availableWidth)
-            {
-                int leftMargin = (availableWidth - totalWidth) / 2;
-                flowPanelMovies.Padding = new Padding(leftMargin, 0, 0, 0);
-            }
-            else
-            {
-                flowPanelMovies.Padding = new Padding(0);
-            }
-        }
         public void SaveMoviesToFile(string filePath)
         {
             string json = JsonSerializer.Serialize(movieLibrary, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, json);
         }
-        private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbFilterValue.Items.Clear();
-            string selectedCriterion = cmbFilterBy.SelectedItem?.ToString();
-            if (string.IsNullOrEmpty(selectedCriterion)) return;
 
-            List<string> values = new List<string>();
-
-            switch (selectedCriterion)
-            {
-                case "Genre":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Genre)
-                        .Where(v => !string.IsNullOrWhiteSpace(v))
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Year":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Year.ToString())
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Director":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Director)
-                        .Where(v => !string.IsNullOrWhiteSpace(v))
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Country":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Country)
-                        .Where(v => !string.IsNullOrWhiteSpace(v))
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Main actor":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.MainActors)
-                        .Where(v => !string.IsNullOrWhiteSpace(v))
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Duration":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Duration.ToString())
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-
-                case "Studio":
-                    values = movieLibrary.GetAllMovies()
-                        .Select(m => m.Studio)
-                        .Where(v => !string.IsNullOrWhiteSpace(v))
-                        .Distinct()
-                        .OrderBy(v => v)
-                        .ToList();
-                    break;
-            }
-            cmbFilterValue.Items.AddRange(values.ToArray());
-            if (cmbFilterValue.Items.Count > 0)
-                cmbFilterValue.SelectedIndex = 0;
-        }
         private void RefreshMovieCards()
         {
             flowPanelMovies.Controls.Clear();
@@ -159,6 +71,7 @@ namespace Сoursework
                 try
                 {
                     movieLibrary.AddMovie(form.Movie);
+                    movies = movieLibrary.GetAllMovies();
                     RefreshMovieCards();
                 }
                 catch (Exception ex)
@@ -190,9 +103,130 @@ namespace Сoursework
             MessageBox.Show("Data is saved");
         }
 
+        private List<Movie> movies = new List<Movie>();
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            string searchTerm = txtSearch.Text.Trim().ToLower();
 
+            var filteredMovies = movies
+                .Where(m => m.Title.ToLower().Contains(searchTerm))
+                .ToList();
+
+            flowPanelMovies.Controls.Clear();
+
+            if (filteredMovies.Count == 0)
+            {
+                Label noResults = new Label
+                {
+                    Text = "No movies found",
+                    AutoSize = true,
+                    ForeColor = Color.Red,
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Padding = new Padding(10)
+                };
+                flowPanelMovies.Controls.Add(noResults);
+                return;
+            }
+
+            foreach (var movie in filteredMovies)
+            {
+                var card = new MovieCardControl();
+                card.SetMovie(movie);
+                flowPanelMovies.Controls.Add(card);
+            }
+        }
+
+        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                btnSearch.PerformClick();
+            }
+        }
+
+        private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbFilterValue.Items.Clear();
+            string selectedCriterion = cmbFilterBy.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selectedCriterion)) return;
+
+            List<string> values = new List<string>();
+
+            switch (selectedCriterion)
+            {
+                case "Genre":
+                    values = movieLibrary.GetAllMovies()
+                        .Where(m => !string.IsNullOrWhiteSpace(m.Genre))
+                        .SelectMany(m => m.Genre.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+                        .Select(g => g.Trim())
+                        .Distinct()
+                        .OrderBy(g => g)
+                        .ToList();
+                    break;
+
+                case "Year":
+                    values = movieLibrary.GetAllMovies()
+                        .Select(m => m.Year.ToString())
+                        .Distinct()
+                        .OrderBy(v => v)
+                        .ToList();
+                    break;
+
+                case "Director":
+                    values = movieLibrary.GetAllMovies()
+                        .Where(m => !string.IsNullOrWhiteSpace(m.Director))
+                        .SelectMany(m => m.Director.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+                        .Select(d => d.Trim())
+                        .Distinct()
+                        .OrderBy(d => d)
+                        .ToList();
+                    break;
+
+                case "Country":
+                    values = movieLibrary.GetAllMovies()
+                        .Where(m => !string.IsNullOrWhiteSpace(m.Country))
+                        .SelectMany(m => m.Country.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+                        .Select(c => c.Trim())
+                        .Distinct()
+                        .OrderBy(c => c)
+                        .ToList();
+                    break;
+
+                case "Main actor":
+                    values = movieLibrary.GetAllMovies()
+                        .Where(m => !string.IsNullOrWhiteSpace(m.MainActors))
+                        .SelectMany(m => m.MainActors.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+                        .Select(a => a.Trim())
+                        .Distinct()
+                        .OrderBy(a => a)
+                        .ToList();
+                    break;
+
+                case "Duration":
+                    values = new List<string>
+                    {
+                        "Up to 60 min",
+                        "61–90 min",
+                        "91–120 min",
+                        "121–150 min",
+                        "151+ min"
+                    };
+                    break;
+
+                case "Studio":
+                    values = movieLibrary.GetAllMovies()
+                        .Select(m => m.Studio)
+                        .Where(v => !string.IsNullOrWhiteSpace(v))
+                        .Distinct()
+                        .OrderBy(v => v)
+                        .ToList();
+                    break;
+            }
+            cmbFilterValue.Items.AddRange(values.ToArray());
+            if (cmbFilterValue.Items.Count > 0)
+                cmbFilterValue.SelectedIndex = 0;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -205,25 +239,64 @@ namespace Сoursework
             {
                 return criterion switch
                 {
-                    "Genre" => m.Genre == value,
+                    "Genre" => !string.IsNullOrEmpty(m.Genre) && m.Genre.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                               .Select(g => g.Trim())
+                               .Contains(value),
                     "Year" => m.Year.ToString() == value,
-                    "Director" => m.Director == value,
-                    "Country" => m.Country == value,
-                    "Main actor" => m.MainActors == value,
-                    "Duration" => m.Duration.ToString() == value,
+                    "Director" => !string.IsNullOrEmpty(m.Director) && m.Director.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                                               .Select(d => d.Trim())
+                                               .Contains(value),
+                    "Country" => !string.IsNullOrEmpty(m.Country) && m.Country.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                                             .Select(c => c.Trim())
+                                             .Contains(value),
+                    "Main actor" => !string.IsNullOrEmpty(m.MainActors) && m.MainActors.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                                               .Select(a => a.Trim())
+                                               .Contains(value),
+                    "Duration" => value switch
+                    {
+                        "До 60 хв" => m.Duration <= 60,
+                        "61–90 хв" => m.Duration > 60 && m.Duration <= 90,
+                        "91–120 хв" => m.Duration > 90 && m.Duration <= 120,
+                        "121–150 хв" => m.Duration > 120 && m.Duration <= 150,
+                        "151+ хв" => m.Duration > 150,
+                        _ => false
+                    },
                     "Studio" => m.Studio == value,
+                    _ => false
                 };
             }).ToList();
 
-            MessageBox.Show($"Found {filtered.Count} movies by filter");
+            flowPanelMovies.Controls.Clear();
+
+            if (filtered.Count == 0)
+            {
+                Label noResults = new Label
+                {
+                    Text = "Фільми не знайдені",
+                    AutoSize = true,
+                    ForeColor = Color.Red,
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Padding = new Padding(10)
+                };
+                flowPanelMovies.Controls.Add(noResults);
+                return;
+            }
+
+            foreach (var movie in filtered)
+            {
+                var card = new MovieCardControl();
+                card.SetMovie(movie);
+                flowPanelMovies.Controls.Add(card);
+            }
         }
 
-        private void btnFilter_Click_1(object sender, EventArgs e)
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void btnSave_Click_1(object sender, EventArgs e)
+        private void cmbFilterValue_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
