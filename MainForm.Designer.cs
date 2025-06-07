@@ -32,8 +32,6 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            btnLoad = new Button();
-            btnSave = new Button();
             btnSearch = new Button();
             btnFilter = new Button();
             PanelSearch = new Panel();
@@ -49,24 +47,22 @@
             // 
             // flowPanelControls
             // 
-            flowPanelControls.Anchor = AnchorStyles.Top;
             flowPanelControls.BackColor = Color.AntiqueWhite;
             flowPanelControls.BorderStyle = BorderStyle.FixedSingle;
             flowPanelControls.Controls.Add(btnAdd);
             flowPanelControls.Controls.Add(btnEdit);
             flowPanelControls.Controls.Add(btnDelete);
-            flowPanelControls.Controls.Add(btnLoad);
-            flowPanelControls.Controls.Add(btnSave);
-            flowPanelControls.Location = new Point(239, 0);
+            flowPanelControls.Location = new Point(8, 9);
             flowPanelControls.Name = "flowPanelControls";
-            flowPanelControls.Size = new Size(528, 34);
+            flowPanelControls.Padding = new Padding(5, 2, 5, 2);
+            flowPanelControls.Size = new Size(330, 36);
             flowPanelControls.TabIndex = 0;
             flowPanelControls.WrapContents = false;
             // 
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.Popup;
-            btnAdd.Location = new Point(3, 3);
+            btnAdd.Location = new Point(8, 5);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(100, 23);
             btnAdd.TabIndex = 0;
@@ -77,7 +73,7 @@
             // btnEdit
             // 
             btnEdit.FlatStyle = FlatStyle.Popup;
-            btnEdit.Location = new Point(109, 3);
+            btnEdit.Location = new Point(114, 5);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(100, 23);
             btnEdit.TabIndex = 1;
@@ -88,37 +84,13 @@
             // btnDelete
             // 
             btnDelete.FlatStyle = FlatStyle.Popup;
-            btnDelete.Location = new Point(215, 3);
+            btnDelete.Location = new Point(220, 5);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(100, 23);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
-            // 
-            // btnLoad
-            // 
-            btnLoad.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnLoad.FlatStyle = FlatStyle.Popup;
-            btnLoad.Location = new Point(321, 3);
-            btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(100, 23);
-            btnLoad.TabIndex = 5;
-            btnLoad.Text = "Load";
-            btnLoad.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnSave.FlatStyle = FlatStyle.Popup;
-            btnSave.Location = new Point(427, 3);
-            btnSave.Margin = new Padding(3, 3, 0, 3);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(100, 23);
-            btnSave.TabIndex = 6;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click_1;
             // 
             // btnSearch
             // 
@@ -153,9 +125,9 @@
             PanelSearch.Controls.Add(txtSearch);
             PanelSearch.Controls.Add(btnSearch);
             PanelSearch.Controls.Add(btnFilter);
-            PanelSearch.Location = new Point(10, 40);
+            PanelSearch.Location = new Point(8, 51);
             PanelSearch.Name = "PanelSearch";
-            PanelSearch.Size = new Size(328, 511);
+            PanelSearch.Size = new Size(330, 500);
             PanelSearch.TabIndex = 5;
             // 
             // SearchFilterslbl
@@ -208,9 +180,9 @@
             // 
             flowPanelMovies.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flowPanelMovies.AutoScroll = true;
-            flowPanelMovies.Location = new Point(344, 40);
+            flowPanelMovies.Location = new Point(344, 51);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(659, 511);
+            flowPanelMovies.Size = new Size(659, 500);
             flowPanelMovies.TabIndex = 6;
             // 
             // MainForm
@@ -224,6 +196,7 @@
             MinimumSize = new Size(690, 602);
             Name = "MainForm";
             Text = "MainForm";
+            FormClosing += MainForm_FormClosing;
             flowPanelControls.ResumeLayout(false);
             PanelSearch.ResumeLayout(false);
             PanelSearch.PerformLayout();
@@ -244,8 +217,6 @@
         private Button btnDelete;
         private Button btnSearch;
         private Button btnFilter;
-        private Button btnLoad;
-        private Button btnSave;
         private Panel PanelSearch;
         private ComboBox cmbFilterBy;
         private TextBox txtSearch;

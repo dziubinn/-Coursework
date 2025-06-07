@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
 
 namespace Сoursework.Models
 {
-    class MovieLibrary
+    public class MovieLibrary
     {
         private List<Movie> movies = new List<Movie>();
 
-        public List<Movie> GetAllMovies()
-        {
-            return movies;
-        }
+        public List<Movie> GetAllMovies() => movies;
 
         public void AddMovie(Movie movie)
         {
@@ -24,10 +19,7 @@ namespace Сoursework.Models
             movies.Add(movie);
         }
 
-        public void DeleteMovie(Movie movie)
-        {
-            movies.Remove(movie);
-        }
+        public void DeleteMovie(Movie movie) => movies.Remove(movie);
 
         public void UpdateMovie(Movie updatedMovie)
         {
@@ -36,36 +28,39 @@ namespace Сoursework.Models
                 movies[index] = updatedMovie;
         }
 
-
-
         public Movie FindMovie(string title)
         {
             return movies.FirstOrDefault(m => m.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
         }
 
-
-        public bool EditMovie(string title, Movie updatedMovie)
-        {
-            var index = movies.FindIndex(m => m.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (index == -1) return false;
-            movies[index] = updatedMovie;
-            return true;
-        }
-
         public void SaveToFile(string filePath)
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(movies, options);
-            File.WriteAllText(filePath, json);
+            try
+            {
+                var json = JsonSerializer.Serialize(movies, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Save error: {ex.Message}");
+            }
         }
 
         public void LoadFromFile(string filePath)
         {
-            if (!File.Exists(filePath))
-                return;
+            if (!File.Exists(filePath)) return;
 
-            string json = File.ReadAllText(filePath);
-            movies = JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
+            try
+            {
+                var json = File.ReadAllText(filePath);
+                var loaded = JsonSerializer.Deserialize<List<Movie>>(json);
+                if (loaded != null)
+                    movies = loaded;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Load error: {ex.Message}");
+            }
         }
 
     }

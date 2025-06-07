@@ -20,6 +20,7 @@ namespace Сoursework
             InitializeComponent();
             this.Load += MainForm_Load;
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
@@ -28,49 +29,39 @@ namespace Сoursework
             txtSearch.KeyDown += TxtSearch_KeyDown;
 
             cmbFilterBy.Items.Clear();
-
             cmbFilterBy.Items.AddRange(new string[]
             {
-        "Genre",
-        "Year",
-        "Director",
-        "Country",
-        "Main actor",
-        "Duration",
-        "Studio"
+                "Genre", "Year", "Director", "Country", "Main actor", "Duration", "Studio"
             });
 
             RefreshMovieCards();
         }
 
-        public void SaveMoviesToFile(string filePath)
-        {
-            string json = JsonSerializer.Serialize(movieLibrary, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, json);
-        }
-
-        private void RefreshMovieCards()
+        private void RefreshMovieCards(List<Movie> moviesToDisplay = null)
         {
             flowPanelMovies.Controls.Clear();
 
-            foreach (var movie in movieLibrary.GetAllMovies())
+            var movies = moviesToDisplay ?? movieLibrary.GetAllMovies();
+
+            foreach (var movie in movies)
             {
                 var card = new MovieCardControl();
                 card.SetMovie(movie);
 
-                card.Selected += (s, e) =>
-                {
-                    foreach (var otherCard in flowPanelMovies.Controls.OfType<MovieCardControl>())
-                        otherCard.IsSelected = false;
-
-                    ((MovieCardControl)s).IsSelected = true;
-                };
+                card.Selected += MovieCardControl_Selected;
 
                 flowPanelMovies.Controls.Add(card);
             }
         }
 
+        private void MovieCardControl_Selected(object sender, EventArgs e)
+        {
+            foreach (var otherCard in flowPanelMovies.Controls.OfType<MovieCardControl>())
+                otherCard.IsSelected = false;
 
+            if (sender is MovieCardControl selectedCard) 
+                selectedCard.IsSelected = true;
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -114,7 +105,6 @@ namespace Сoursework
             }
         }
 
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             var selectedCard = flowPanelMovies.Controls
@@ -140,18 +130,6 @@ namespace Сoursework
             }
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            movieLibrary.LoadFromFile("movies.json");
-            MessageBox.Show("Data is loaded.");
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            movieLibrary.SaveToFile("movies.json");
-            MessageBox.Show("Data is saved");
-        }
-
         private List<Movie> movies = new List<Movie>();
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -161,10 +139,9 @@ namespace Сoursework
                 .Where(m => m.Title.ToLower().Contains(searchTerm))
                 .ToList();
 
-            flowPanelMovies.Controls.Clear();
-
             if (filteredMovies.Count == 0)
             {
+                flowPanelMovies.Controls.Clear();
                 Label noResults = new Label
                 {
                     Text = "No movies found",
@@ -174,14 +151,10 @@ namespace Сoursework
                     Padding = new Padding(10)
                 };
                 flowPanelMovies.Controls.Add(noResults);
-                return;
             }
-
-            foreach (var movie in filteredMovies)
+            else
             {
-                var card = new MovieCardControl();
-                card.SetMovie(movie);
-                flowPanelMovies.Controls.Add(card);
+                RefreshMovieCards(filteredMovies);
             }
         }
 
@@ -303,11 +276,11 @@ namespace Сoursework
                                                .Contains(value),
                     "Duration" => value switch
                     {
-                        "До 60 хв" => m.Duration <= 60,
-                        "61–90 хв" => m.Duration > 60 && m.Duration <= 90,
-                        "91–120 хв" => m.Duration > 90 && m.Duration <= 120,
-                        "121–150 хв" => m.Duration > 120 && m.Duration <= 150,
-                        "151+ хв" => m.Duration > 150,
+                        "Up to 60 min" => m.Duration <= 60,
+                        "61–90 min" => m.Duration > 60 && m.Duration <= 90,
+                        "91–120 min" => m.Duration > 90 && m.Duration <= 120,
+                        "121–150 min" => m.Duration > 120 && m.Duration <= 150,
+                        "151+ min" => m.Duration > 150,
                         _ => false
                     },
                     "Studio" => m.Studio == value,
@@ -315,10 +288,9 @@ namespace Сoursework
                 };
             }).ToList();
 
-            flowPanelMovies.Controls.Clear();
-
             if (filtered.Count == 0)
             {
+                flowPanelMovies.Controls.Clear();
                 Label noResults = new Label
                 {
                     Text = "Фільми не знайдені",
@@ -328,26 +300,22 @@ namespace Сoursework
                     Padding = new Padding(10)
                 };
                 flowPanelMovies.Controls.Add(noResults);
-                return;
             }
-
-            foreach (var movie in filtered)
+            else
             {
-                var card = new MovieCardControl();
-                card.SetMovie(movie);
-                flowPanelMovies.Controls.Add(card);
+                RefreshMovieCards(filtered);
             }
-        }
-
-
-        private void btnSave_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void cmbFilterValue_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string filePath = Path.Combine(Application.StartupPath, "movies.json");
+            movieLibrary.SaveToFile(filePath);
         }
     }
 }
