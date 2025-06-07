@@ -57,9 +57,9 @@
             flowPanelControls.Controls.Add(btnDelete);
             flowPanelControls.Controls.Add(btnLoad);
             flowPanelControls.Controls.Add(btnSave);
-            flowPanelControls.Location = new Point(71, 0);
+            flowPanelControls.Location = new Point(239, 0);
             flowPanelControls.Name = "flowPanelControls";
-            flowPanelControls.Size = new Size(533, 34);
+            flowPanelControls.Size = new Size(528, 34);
             flowPanelControls.TabIndex = 0;
             flowPanelControls.WrapContents = false;
             // 
@@ -94,6 +94,7 @@
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnLoad
             // 
@@ -111,6 +112,7 @@
             btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnSave.FlatStyle = FlatStyle.Popup;
             btnSave.Location = new Point(427, 3);
+            btnSave.Margin = new Padding(3, 3, 0, 3);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 23);
             btnSave.TabIndex = 6;
@@ -208,14 +210,14 @@
             flowPanelMovies.AutoScroll = true;
             flowPanelMovies.Location = new Point(344, 40);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(331, 511);
+            flowPanelMovies.Size = new Size(659, 511);
             flowPanelMovies.TabIndex = 6;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(675, 563);
+            ClientSize = new Size(1003, 563);
             Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
             Controls.Add(flowPanelControls);
@@ -228,9 +230,14 @@
             ResumeLayout(false);
         }
 
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
-       
+
         private FlowLayoutPanel flowPanelControls;
         private Button btnAdd;
         private Button btnEdit;

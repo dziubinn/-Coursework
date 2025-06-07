@@ -6,17 +6,28 @@ using Сoursework;
 
 public class MovieCardControl : UserControl
 {
-    public bool IsSelected { get; private set; }
+    private bool isSelected;
     private Color originalBackColor;
     private Label lblTitleYearGenre;
     private Button btnDetails;
     private Movie currentMovie;
     public Movie Movie { get; private set; }
 
+    public bool IsSelected
+    {
+        get => isSelected;
+        set
+        {
+            isSelected = value;
+            this.BackColor = isSelected ? Color.AntiqueWhite : originalBackColor;
+        }
+    }
+
     public MovieCardControl()
     {
         InitializeComponents();
         originalBackColor = this.BackColor;
+
         this.Click += MovieCardControl_Click;
         foreach (Control control in this.Controls)
         {
@@ -89,14 +100,10 @@ public class MovieCardControl : UserControl
         }
     }
 
+    public event EventHandler Selected;
+
     private void MovieCardControl_Click(object sender, EventArgs e)
     {
-        IsSelected = !IsSelected;
-        this.BackColor = IsSelected ? Color.AntiqueWhite : originalBackColor;
-    }
-    public void Deselect()
-    {
-        IsSelected = false;
-        this.BackColor = originalBackColor;
+        Selected?.Invoke(this, EventArgs.Empty);
     }
 }

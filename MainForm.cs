@@ -57,6 +57,15 @@ namespace Сoursework
             {
                 var card = new MovieCardControl();
                 card.SetMovie(movie);
+
+                card.Selected += (s, e) =>
+                {
+                    foreach (var otherCard in flowPanelMovies.Controls.OfType<MovieCardControl>())
+                        otherCard.IsSelected = false;
+
+                    ((MovieCardControl)s).IsSelected = true;
+                };
+
                 flowPanelMovies.Controls.Add(card);
             }
         }
@@ -90,7 +99,7 @@ namespace Сoursework
 
             if (selectedCard == null)
             {
-                MessageBox.Show("Будь ласка, виберіть фільм для редагування.");
+                MessageBox.Show("Choose movie first");
                 return;
             }
 
@@ -108,7 +117,27 @@ namespace Сoursework
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            var selectedCard = flowPanelMovies.Controls
+                .OfType<MovieCardControl>()
+                .FirstOrDefault(c => c.IsSelected);
+            
+            if (selectedCard == null)
+            {
+                MessageBox.Show("Choose movie first");
+                return;
+            }
 
+            var selectedMovie = selectedCard.Movie;
+            var confirmResult = MessageBox.Show($"Are you sure you want to delete this movie:\n\n{selectedMovie.Title}?",
+                "Delete confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if(confirmResult == DialogResult.Yes)
+            {
+                movieLibrary.DeleteMovie(selectedMovie);
+                RefreshMovieCards();
+            }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)

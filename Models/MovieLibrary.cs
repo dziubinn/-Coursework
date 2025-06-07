@@ -24,12 +24,11 @@ namespace Сoursework.Models
             movies.Add(movie);
         }
 
-        public bool RemoveMovie(string title)
+        public void DeleteMovie(Movie movie)
         {
-            var movie = movies.FirstOrDefault(m => m.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            return movies.Remove(movie);
-
+            movies.Remove(movie);
         }
+
         public void UpdateMovie(Movie updatedMovie)
         {
             var index = movies.FindIndex(m => m.Id == updatedMovie.Id);
