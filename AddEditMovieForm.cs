@@ -68,6 +68,19 @@ namespace Сoursework
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
+                string.IsNullOrWhiteSpace(txtStudio.Text) ||
+                string.IsNullOrWhiteSpace(txtGenre.Text) ||
+                string.IsNullOrWhiteSpace(txtCountry.Text) ||
+                string.IsNullOrWhiteSpace(txtDirector.Text) ||
+                string.IsNullOrWhiteSpace(txtActors.Text))
+            {
+                MessageBox.Show("Please fill in all required fields: Title, Studio, Genre, Country, Director, and Main Actors.",
+                        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             Movie.Title = txtTitle.Text.Trim();
             Movie.Director = txtDirector.Text.Trim();
             Movie.Genre = txtGenre.Text.Trim();

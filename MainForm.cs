@@ -59,7 +59,7 @@ namespace Сoursework
             foreach (var otherCard in flowPanelMovies.Controls.OfType<MovieCardControl>())
                 otherCard.IsSelected = false;
 
-            if (sender is MovieCardControl selectedCard) 
+            if (sender is MovieCardControl selectedCard)
                 selectedCard.IsSelected = true;
         }
 
@@ -110,7 +110,7 @@ namespace Сoursework
             var selectedCard = flowPanelMovies.Controls
                 .OfType<MovieCardControl>()
                 .FirstOrDefault(c => c.IsSelected);
-            
+
             if (selectedCard == null)
             {
                 MessageBox.Show("Choose movie first");
@@ -123,7 +123,7 @@ namespace Сoursework
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
-            if(confirmResult == DialogResult.Yes)
+            if (confirmResult == DialogResult.Yes)
             {
                 movieLibrary.DeleteMovie(selectedMovie);
                 RefreshMovieCards();
@@ -134,6 +134,12 @@ namespace Сoursework
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string searchTerm = txtSearch.Text.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                lblHeader.Text = "All Movies";
+                RefreshMovieCards(movies);
+                return;
+            }
 
             var filteredMovies = movies
                 .Where(m => m.Title.ToLower().Contains(searchTerm))
@@ -156,6 +162,8 @@ namespace Сoursework
             {
                 RefreshMovieCards(filteredMovies);
             }
+
+            lblHeader.Text = $"Search Results for \"{txtSearch.Text.Trim()}\"";
         }
 
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -305,6 +313,8 @@ namespace Сoursework
             {
                 RefreshMovieCards(filtered);
             }
+
+            lblHeader.Text = $"Filtered by {criterion}: \n{value}";
         }
 
         private void cmbFilterValue_SelectedIndexChanged(object sender, EventArgs e)
@@ -316,6 +326,11 @@ namespace Сoursework
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.SaveToFile(filePath);
+        }
+
+        private void lblHeader_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

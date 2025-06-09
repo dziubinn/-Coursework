@@ -41,6 +41,7 @@
             cmbFilterBy = new ComboBox();
             txtSearch = new TextBox();
             flowPanelMovies = new FlowLayoutPanel();
+            lblHeader = new Label();
             flowPanelControls.SuspendLayout();
             PanelSearch.SuspendLayout();
             SuspendLayout();
@@ -152,7 +153,9 @@
             // 
             // cmbFilterValue
             // 
+            cmbFilterValue.DropDownHeight = 230;
             cmbFilterValue.FormattingEnabled = true;
+            cmbFilterValue.IntegralHeight = false;
             cmbFilterValue.Location = new Point(15, 284);
             cmbFilterValue.Name = "cmbFilterValue";
             cmbFilterValue.Size = new Size(194, 23);
@@ -180,16 +183,28 @@
             // 
             flowPanelMovies.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flowPanelMovies.AutoScroll = true;
-            flowPanelMovies.Location = new Point(344, 51);
+            flowPanelMovies.Location = new Point(344, 99);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(659, 500);
+            flowPanelMovies.Size = new Size(609, 452);
             flowPanelMovies.TabIndex = 6;
+            // 
+            // lblHeader
+            // 
+            lblHeader.AutoSize = true;
+            lblHeader.Font = new Font("Bauhaus 93", 22.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeader.Location = new Point(344, 11);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(149, 34);
+            lblHeader.TabIndex = 7;
+            lblHeader.Text = "All Movies";
+            lblHeader.Click += lblHeader_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1003, 563);
+            ClientSize = new Size(953, 563);
+            Controls.Add(lblHeader);
             Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
             Controls.Add(flowPanelControls);
@@ -201,6 +216,7 @@
             PanelSearch.ResumeLayout(false);
             PanelSearch.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -224,5 +240,6 @@
         private FlowLayoutPanel flowPanelMovies;
         private Label SearchFilterslbl;
         private Label TitleNamelbl;
+        private Label lblHeader;
     }
 }
