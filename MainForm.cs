@@ -26,7 +26,8 @@ namespace Сoursework
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.LoadFromFile(filePath);
             movies = movieLibrary.GetAllMovies();
-            txtSearch.KeyDown += TxtSearch_KeyDown;
+            this.KeyPreview = true;
+            this.KeyDown += MainForm_KeyDown;
 
             cmbFilterBy.Items.Clear();
             cmbFilterBy.Items.AddRange(new string[]
@@ -59,8 +60,11 @@ namespace Сoursework
             foreach (var otherCard in flowPanelMovies.Controls.OfType<MovieCardControl>())
                 otherCard.IsSelected = false;
 
-            if (sender is MovieCardControl selectedCard)
-                selectedCard.IsSelected = true;
+            if (sender is MovieCardControl card)
+            {
+                card.IsSelected = true;
+                selectedCard = card;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -166,13 +170,80 @@ namespace Сoursework
             lblHeader.Text = $"Search Results for \"{txtSearch.Text.Trim()}\"";
         }
 
-        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+        private MovieCardControl selectedCard;
+
+        private void OnCardSelected(object sender, EventArgs e)
+        {
+            selectedCard = (MovieCardControl)sender;
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if(ActiveControl == txtSearch)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    btnSearch.PerformClick();
+                }
+                else if (ActiveControl == cmbFilterValue)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    btnFilter.PerformClick();
+                }
+            }
+
+            else if (e.KeyCode == Keys.Escape)
+            {
+                var result = MessageBox.Show("Are you sure you want to exit?", "Exit confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
                 e.Handled = true;
-                e.SuppressKeyPress = true;
-                btnSearch.PerformClick();
+            }
+
+            else if (e.KeyCode == Keys.F1)
+            {
+                MessageBox.Show("This form is the main part of the application. It provides the user with a convenient interface for viewing, searching, filtering, and managing movies in the media library." +
+                    "\nEnter - Agree" +
+                    "\nEsc - Refuse" +
+                    "\nTab – Move to the next field" +
+                    "\nShift-Tab – return to the previous field" +
+                    "\nAdd - Ctrl + N" +
+                    "\nEdit - Ctrl + E" +
+                    "\nDelete - Ctrl + D or Delete" +
+                    "\nInfo - Ctrl + I",
+                                "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else if (e.Control && e.KeyCode == Keys.N)
+            {
+                btnAdd.PerformClick();
+                e.Handled = true;
+            }
+
+            else if (e.Control && e.KeyCode == Keys.E)
+            {
+                btnEdit.PerformClick();
+                e.Handled = true;
+            }
+
+            else if ((e.Control && e.KeyCode == Keys.D) || e.KeyCode == Keys.Delete)
+            {
+                btnDelete.PerformClick();
+                e.Handled = true;
+            }
+
+            else if (e.Control && e.KeyCode == Keys.I)
+            {
+                if (selectedCard != null)
+                {
+                    selectedCard.ShowDetails();
+                }
+                e.Handled = true;
             }
         }
 

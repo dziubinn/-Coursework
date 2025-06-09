@@ -74,7 +74,7 @@
             txtDirector.Location = new Point(173, 245);
             txtDirector.Name = "txtDirector";
             txtDirector.Size = new Size(190, 23);
-            txtDirector.TabIndex = 1;
+            txtDirector.TabIndex = 5;
             // 
             // txtGenre
             // 
@@ -88,21 +88,21 @@
             txtCountry.Location = new Point(173, 196);
             txtCountry.Name = "txtCountry";
             txtCountry.Size = new Size(190, 23);
-            txtCountry.TabIndex = 3;
+            txtCountry.TabIndex = 4;
             // 
             // txtStudio
             // 
             txtStudio.Location = new Point(173, 54);
             txtStudio.Name = "txtStudio";
             txtStudio.Size = new Size(190, 23);
-            txtStudio.TabIndex = 4;
+            txtStudio.TabIndex = 1;
             // 
             // txtActors
             // 
             txtActors.Location = new Point(173, 291);
             txtActors.Name = "txtActors";
             txtActors.Size = new Size(190, 23);
-            txtActors.TabIndex = 5;
+            txtActors.TabIndex = 6;
             // 
             // txtDescription
             // 
@@ -111,7 +111,7 @@
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(644, 70);
-            txtDescription.TabIndex = 6;
+            txtDescription.TabIndex = 9;
             // 
             // numYear
             // 
@@ -120,7 +120,7 @@
             numYear.Minimum = new decimal(new int[] { 1900, 0, 0, 0 });
             numYear.Name = "numYear";
             numYear.Size = new Size(190, 23);
-            numYear.TabIndex = 7;
+            numYear.TabIndex = 3;
             numYear.Value = new decimal(new int[] { 1980, 0, 0, 0 });
             // 
             // numDuration
@@ -130,7 +130,7 @@
             numDuration.Minimum = new decimal(new int[] { 30, 0, 0, 0 });
             numDuration.Name = "numDuration";
             numDuration.Size = new Size(190, 23);
-            numDuration.TabIndex = 8;
+            numDuration.TabIndex = 7;
             numDuration.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // numRating
@@ -140,7 +140,7 @@
             numRating.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numRating.Name = "numRating";
             numRating.Size = new Size(190, 23);
-            numRating.TabIndex = 9;
+            numRating.TabIndex = 8;
             numRating.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // chkWatched
@@ -333,15 +333,15 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtTitle);
-            Controls.Add(txtDirector);
-            Controls.Add(txtGenre);
-            Controls.Add(txtCountry);
             Controls.Add(txtStudio);
-            Controls.Add(txtActors);
-            Controls.Add(txtDescription);
+            Controls.Add(txtGenre);
             Controls.Add(numYear);
+            Controls.Add(txtCountry);
+            Controls.Add(txtDirector);
+            Controls.Add(txtActors);
             Controls.Add(numDuration);
             Controls.Add(numRating);
+            Controls.Add(txtDescription);
             Controls.Add(chkWatched);
             Controls.Add(chkFavorite);
             Controls.Add(btnOK);

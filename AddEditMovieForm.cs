@@ -15,6 +15,9 @@ namespace Сoursework
         {
             InitializeComponent();
 
+            this.KeyPreview = true;
+            this.KeyDown += AddEditMovieForm_KeyDown;
+
             if (movie != null)
             {
                 isEditMode = true;
@@ -30,9 +33,9 @@ namespace Сoursework
                     Country = movie.Country,
                     Director = movie.Director,
                     MainActors = movie.MainActors,
-                    Description = movie.Description,
                     Rating = movie.Rating,
                     Duration = movie.Duration,
+                    Description = movie.Description,
                     Watched = movie.Watched,
                     IsFavorite = movie.IsFavorite
                 };
@@ -47,21 +50,35 @@ namespace Сoursework
             }
         }
 
+        private void AddEditMovieForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Escape)
+            {
+                btnCancel.PerformClick();
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                btnOK.PerformClick();
+            }
+            else if(e.KeyCode == Keys.F1)
+            {
+                MessageBox.Show("This is a form of adding or editing a movie. Fill in all required fields, then click:\n Enter - Agree\n Esc - Refuse\n Tab – Move to the next field\n Shift-Tab – return to the previous field.",
+                                "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         private void FillFormWithMovie(Movie movie)
         {
             txtTitle.Text = movie.Title;
-            txtDirector.Text = movie.Director;
-            txtGenre.Text = movie.Genre;
-            txtCountry.Text = movie.Country;
             txtStudio.Text = movie.Studio;
-            txtActors.Text = movie.MainActors;
-            txtDescription.Text = movie.Description;
-
+            txtGenre.Text = movie.Genre;
             numYear.Value = movie.Year;
+            txtCountry.Text = movie.Country;
+            txtDirector.Text = movie.Director;
+            txtActors.Text = movie.MainActors;
             numDuration.Value = movie.Duration;
             numRating.Value = (decimal)movie.Rating;
-
+            txtDescription.Text = movie.Description;
             chkWatched.Checked = movie.Watched;
             chkFavorite.Checked = movie.IsFavorite;
         }
@@ -82,17 +99,15 @@ namespace Сoursework
 
 
             Movie.Title = txtTitle.Text.Trim();
-            Movie.Director = txtDirector.Text.Trim();
-            Movie.Genre = txtGenre.Text.Trim();
-            Movie.Country = txtCountry.Text.Trim();
             Movie.Studio = txtStudio.Text.Trim();
-            Movie.MainActors = txtActors.Text.Trim();
-            Movie.Description = txtDescription.Text.Trim();
-
+            Movie.Genre = txtGenre.Text.Trim();
             Movie.Year = (int)numYear.Value;
+            Movie.Country = txtCountry.Text.Trim();
+            Movie.Director = txtDirector.Text.Trim();
+            Movie.MainActors = txtActors.Text.Trim();
             Movie.Duration = (int)numDuration.Value;
             Movie.Rating = (int)numRating.Value;
-
+            Movie.Description = txtDescription.Text.Trim();
             Movie.Watched = chkWatched.Checked;
             Movie.IsFavorite = chkFavorite.Checked;
 

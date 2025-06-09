@@ -99,7 +99,7 @@
             btnSearch.Location = new Point(215, 49);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 23);
-            btnSearch.TabIndex = 3;
+            btnSearch.TabIndex = 4;
             btnSearch.Text = "Search🔍";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
@@ -110,7 +110,7 @@
             btnFilter.Location = new Point(215, 284);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
-            btnFilter.TabIndex = 4;
+            btnFilter.TabIndex = 7;
             btnFilter.Text = "Filter";
             btnFilter.UseVisualStyleBackColor = true;
             btnFilter.Click += btnFilter_Click;
@@ -177,7 +177,7 @@
             txtSearch.Location = new Point(15, 50);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(194, 23);
-            txtSearch.TabIndex = 4;
+            txtSearch.TabIndex = 3;
             // 
             // flowPanelMovies
             // 

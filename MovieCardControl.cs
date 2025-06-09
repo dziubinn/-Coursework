@@ -106,4 +106,10 @@ public class MovieCardControl : UserControl
     {
         Selected?.Invoke(this, EventArgs.Empty);
     }
+
+    public void ShowDetails()
+    {
+        btnDetails.PerformClick();
+    }
+
 }
