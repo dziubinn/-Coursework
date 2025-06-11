@@ -32,6 +32,7 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
+            btnOpenFavorites = new Button();
             btnSearch = new Button();
             btnFilter = new Button();
             PanelSearch = new Panel();
@@ -53,6 +54,7 @@
             flowPanelControls.Controls.Add(btnAdd);
             flowPanelControls.Controls.Add(btnEdit);
             flowPanelControls.Controls.Add(btnDelete);
+            flowPanelControls.Controls.Add(btnOpenFavorites);
             flowPanelControls.Location = new Point(8, 9);
             flowPanelControls.Name = "flowPanelControls";
             flowPanelControls.Padding = new Padding(5, 2, 5, 2);
@@ -65,7 +67,7 @@
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Location = new Point(8, 5);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(100, 23);
+            btnAdd.Size = new Size(85, 23);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -74,9 +76,9 @@
             // btnEdit
             // 
             btnEdit.FlatStyle = FlatStyle.Popup;
-            btnEdit.Location = new Point(114, 5);
+            btnEdit.Location = new Point(99, 5);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(100, 23);
+            btnEdit.Size = new Size(85, 23);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
@@ -85,13 +87,30 @@
             // btnDelete
             // 
             btnDelete.FlatStyle = FlatStyle.Popup;
-            btnDelete.Location = new Point(220, 5);
+            btnDelete.Location = new Point(190, 5);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(100, 23);
+            btnDelete.Size = new Size(85, 23);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
+            // 
+            // btnOpenFavorites
+            // 
+            btnOpenFavorites.Anchor = AnchorStyles.Top;
+            btnOpenFavorites.BackColor = Color.AntiqueWhite;
+            btnOpenFavorites.FlatAppearance.BorderSize = 0;
+            btnOpenFavorites.FlatAppearance.MouseDownBackColor = Color.AntiqueWhite;
+            btnOpenFavorites.FlatAppearance.MouseOverBackColor = Color.AntiqueWhite;
+            btnOpenFavorites.FlatStyle = FlatStyle.Flat;
+            btnOpenFavorites.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnOpenFavorites.ForeColor = Color.Firebrick;
+            btnOpenFavorites.Location = new Point(281, 5);
+            btnOpenFavorites.Name = "btnOpenFavorites";
+            btnOpenFavorites.Size = new Size(34, 23);
+            btnOpenFavorites.TabIndex = 3;
+            btnOpenFavorites.Text = "♥";
+            btnOpenFavorites.UseVisualStyleBackColor = false;
             // 
             // btnSearch
             // 
@@ -197,7 +216,6 @@
             lblHeader.Size = new Size(149, 34);
             lblHeader.TabIndex = 7;
             lblHeader.Text = "All Movies";
-            lblHeader.Click += lblHeader_Click;
             // 
             // MainForm
             // 
@@ -241,5 +259,6 @@
         private Label SearchFilterslbl;
         private Label TitleNamelbl;
         private Label lblHeader;
+        private Button btnOpenFavorites;
     }
 }

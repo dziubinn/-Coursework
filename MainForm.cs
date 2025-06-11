@@ -19,6 +19,7 @@ namespace Сoursework
         {
             InitializeComponent();
             this.Load += MainForm_Load;
+            btnOpenFavorites.Click += btnOpenFavorites_Click;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,6 +49,12 @@ namespace Сoursework
             {
                 var card = new MovieCardControl();
                 card.SetMovie(movie);
+                card.FavoriteAdded += (s, m) =>
+                {
+                    if (!favoriteMovies.Contains(m)) favoriteMovies.Add(m);
+                };
+                card.FavoriteRemoved += (s, m) => favoriteMovies.Remove(m);
+
 
                 card.Selected += MovieCardControl_Selected;
 
@@ -181,7 +188,7 @@ namespace Сoursework
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if(ActiveControl == txtSearch)
+                if (ActiveControl == txtSearch)
                 {
                     e.Handled = true;
                     e.SuppressKeyPress = true;
@@ -399,9 +406,23 @@ namespace Сoursework
             movieLibrary.SaveToFile(filePath);
         }
 
-        private void lblHeader_Click(object sender, EventArgs e)
+        private List<Movie> favoriteMovies = new List<Movie>();
+        private void btnOpenFavorites_Click(object sender, EventArgs e)
         {
+            if (favoriteMovies.Count == 0)
+            {
+                MessageBox.Show("You have no favorite movies selected.", "Favorites", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            var favoritesForm = new FavoritesForm(favoriteMovies);
+            favoritesForm.ShowDialog();
+
+            foreach (var card in flowPanelMovies.Controls.OfType<MovieCardControl>())
+            {
+                var movie = card.Movie;
+                card.SetFavorite(favoriteMovies.Contains(movie));
+            }
         }
     }
 }

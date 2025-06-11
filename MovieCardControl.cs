@@ -7,9 +7,11 @@ using Сoursework;
 public class MovieCardControl : UserControl
 {
     private bool isSelected;
+    private bool isFavorite = false;
     private Color originalBackColor;
     private Label lblTitleYearGenre;
     private Button btnDetails;
+    private Button btnFavorite;
     private Movie currentMovie;
     public Movie Movie { get; private set; }
 
@@ -68,20 +70,34 @@ public class MovieCardControl : UserControl
         lblRating.TextAlign = ContentAlignment.MiddleLeft;
 
         btnDetails = new Button();
-        btnDetails.Size = new Size(40, 40);
-        btnDetails.Location = new Point(240, 25);
+        btnDetails.Size = new Size(40, 30);
+        btnDetails.Location = new Point(250, 10);
         btnDetails.Text = "i";
         btnDetails.Font = new Font("Bauhaus 93", 12, FontStyle.Bold);
         btnDetails.FlatStyle = FlatStyle.Popup;
         btnDetails.Click += BtnDetails_Click;
 
+        btnFavorite = new Button();
+        btnFavorite.Size = new Size(40, 50);
+        btnFavorite.Location = new Point(250, 45);
+        btnFavorite.Text = "♡";
+        btnFavorite.Font = new Font("Arial", 28, FontStyle.Bold);
+        btnFavorite.ForeColor = Color.Gray;
+        btnFavorite.FlatStyle = FlatStyle.Flat;
+        btnFavorite.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        btnFavorite.FlatAppearance.MouseDownBackColor = Color.Transparent;
+        btnFavorite.BackColor = Color.Transparent;
+        btnFavorite.FlatAppearance.BorderSize = 0;
+        btnFavorite.Click += BtnFavorite_Click;
+
         this.Controls.Add(lblTitle);
         this.Controls.Add(lblInfo);
         this.Controls.Add(lblRating);
         this.Controls.Add(btnDetails);
+        this.Controls.Add(btnFavorite);
     }
 
-    public void SetMovie(Movie movie)
+    public void SetMovie(Movie movie, List<Movie> globalFavorites = null)
     {
         currentMovie = movie;
         Movie = movie;
@@ -89,6 +105,19 @@ public class MovieCardControl : UserControl
         lblTitle.Text = movie.Title;
         lblInfo.Text = $"{movie.Year}  {movie.Duration}m  {movie.Genre}";
         lblRating.Text = $"★ {movie.Rating:F1}";
+
+        if (globalFavorites != null && globalFavorites.Contains(movie))
+        {
+            isFavorite = true;
+            btnFavorite.Text = "♥";
+            btnFavorite.ForeColor = Color.Firebrick;
+        }
+        else
+        {
+            isFavorite = false;
+            btnFavorite.Text = "♡";
+            btnFavorite.ForeColor = Color.Gray;
+        }
     }
 
     private void BtnDetails_Click(object sender, EventArgs e)
@@ -99,6 +128,20 @@ public class MovieCardControl : UserControl
             detailsForm.ShowDialog();
         }
     }
+
+    private void BtnFavorite_Click(object sender, EventArgs e)
+    {
+        isFavorite = !isFavorite;
+        btnFavorite.Text = isFavorite ? "♥" : "♡";
+        btnFavorite.ForeColor = isFavorite ? Color.Firebrick : Color.Gray;
+
+        if (isFavorite)
+            FavoriteAdded?.Invoke(this, currentMovie);
+        else
+            FavoriteRemoved?.Invoke(this, currentMovie);
+    }
+    public event EventHandler<Movie> FavoriteAdded;
+    public event EventHandler<Movie> FavoriteRemoved;
 
     public event EventHandler Selected;
 
@@ -111,5 +154,18 @@ public class MovieCardControl : UserControl
     {
         btnDetails.PerformClick();
     }
-
+    public bool IsFavorite
+    {
+        get => isFavorite;
+        set
+        {
+            isFavorite = value;
+            btnFavorite.Text = isFavorite ? "♥" : "♡";
+            btnFavorite.ForeColor = isFavorite ? Color.Firebrick : Color.Gray;
+        }
+    }
+    public void SetFavorite(bool favorite)
+    {
+        IsFavorite = favorite;
+    }
 }
