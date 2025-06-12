@@ -21,7 +21,7 @@ public class MovieCardControl : UserControl
         set
         {
             isSelected = value;
-            this.BackColor = isSelected ? Color.AntiqueWhite : originalBackColor;
+            this.BackColor = isSelected ? Color.OldLace : originalBackColor;
         }
     }
 
@@ -50,7 +50,7 @@ public class MovieCardControl : UserControl
         lblTitle = new Label();
         lblTitle.Location = new Point(10, 5);
         lblTitle.Size = new Size(220, 25);
-        lblTitle.Font = new Font("Arial", 12, FontStyle.Bold);
+        lblTitle.Font = new Font("Belwe Bd BT", 12, FontStyle.Bold);
         lblTitle.TextAlign = ContentAlignment.MiddleLeft;
         lblTitle.AutoEllipsis = true;
         lblTitle.UseCompatibleTextRendering = true;
@@ -58,14 +58,14 @@ public class MovieCardControl : UserControl
         lblInfo = new Label();
         lblInfo.Location = new Point(10, 30);
         lblInfo.Size = new Size(220, 20);
-        lblInfo.Font = new Font("Arial", 9, FontStyle.Regular);
+        lblInfo.Font = new Font("Belwe Bd BT", 9, FontStyle.Regular);
         lblInfo.ForeColor = Color.DimGray;
         lblInfo.TextAlign = ContentAlignment.MiddleLeft;
 
         lblRating = new Label();
         lblRating.Location = new Point(10, 55);
         lblRating.Size = new Size(220, 20);
-        lblRating.Font = new Font("Arial", 9, FontStyle.Italic);
+        lblRating.Font = new Font("Belwe Bd BT", 11, FontStyle.Italic);
         lblRating.ForeColor = Color.DarkOrange;
         lblRating.TextAlign = ContentAlignment.MiddleLeft;
 
@@ -73,7 +73,7 @@ public class MovieCardControl : UserControl
         btnDetails.Size = new Size(40, 30);
         btnDetails.Location = new Point(250, 10);
         btnDetails.Text = "i";
-        btnDetails.Font = new Font("Bauhaus 93", 12, FontStyle.Bold);
+        btnDetails.Font = new Font("Belwe Bd BT", 12, FontStyle.Bold);
         btnDetails.FlatStyle = FlatStyle.Popup;
         btnDetails.Click += BtnDetails_Click;
 
@@ -81,7 +81,7 @@ public class MovieCardControl : UserControl
         btnFavorite.Size = new Size(40, 50);
         btnFavorite.Location = new Point(250, 45);
         btnFavorite.Text = "♡";
-        btnFavorite.Font = new Font("Arial", 28, FontStyle.Bold);
+        btnFavorite.Font = new Font("Belwe Bd BT", 24, FontStyle.Bold);
         btnFavorite.ForeColor = Color.Gray;
         btnFavorite.FlatStyle = FlatStyle.Flat;
         btnFavorite.FlatAppearance.MouseOverBackColor = Color.Transparent;

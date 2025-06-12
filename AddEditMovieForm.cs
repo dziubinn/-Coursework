@@ -36,7 +36,6 @@ namespace Сoursework
                     Rating = movie.Rating,
                     Duration = movie.Duration,
                     Description = movie.Description,
-                    Watched = movie.Watched,
                     IsFavorite = movie.IsFavorite
                 };
 
@@ -79,7 +78,6 @@ namespace Сoursework
             numDuration.Value = movie.Duration;
             numRating.Value = (decimal)movie.Rating;
             txtDescription.Text = movie.Description;
-            chkWatched.Checked = movie.Watched;
             chkFavorite.Checked = movie.IsFavorite;
         }
 
@@ -108,7 +106,6 @@ namespace Сoursework
             Movie.Duration = (int)numDuration.Value;
             Movie.Rating = (int)numRating.Value;
             Movie.Description = txtDescription.Text.Trim();
-            Movie.Watched = chkWatched.Checked;
             Movie.IsFavorite = chkFavorite.Checked;
 
             DialogResult = DialogResult.OK;
@@ -119,11 +116,6 @@ namespace Сoursework
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

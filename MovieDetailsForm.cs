@@ -18,13 +18,13 @@ namespace Сoursework
         private void DisplayMovieDetails()
         {
             panelDetails.Controls.Clear();
-            panelDetails.BackColor = Color.SeaShell;
+            panelDetails.BackColor = Color.OldLace;
             panelDetails.Padding = new Padding(10);
 
             Label lblTitle = new Label
             {
                 Text = _movie.Title,
-                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                Font = new Font("Belwe Bd BT", 16, FontStyle.Bold),
                 ForeColor = Color.Black,
                 AutoSize = true,
             };
@@ -32,7 +32,7 @@ namespace Сoursework
             Label lblRating = new Label
             {
                 Text = $"⭐ {_movie.Rating:0.0}",
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                Font = new Font("Belwe Bd BT", 12, FontStyle.Bold),
                 ForeColor = Color.Goldenrod,
                 AutoSize = true,
                 Margin = new Padding(0, 0, 0, 15)
@@ -41,7 +41,7 @@ namespace Сoursework
             Label lblSubtitle = new Label
             {
                 Text = $"{_movie.Year} • {_movie.Duration}m • {_movie.Genre}",
-                Font = new Font("Segoe UI", 10),
+                Font = new Font("Belwe Bd BT", 10),
                 ForeColor = Color.Gray,
                 AutoSize = true,
                 Margin = new Padding(0, 5, 0, 10)
@@ -50,37 +50,37 @@ namespace Сoursework
             Label lblDirector = new Label
             {
                 Text = $"🎬 Director: {_movie.Director}",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Belwe Bd BT", 9),
                 AutoSize = true
             };
 
             Label lblActor = new Label
             {
                 Text = $"🎭 Main Actor: {_movie.MainActors}",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Belwe Bd BT", 9),
                 AutoSize = true
             };
 
             Label lblCountry = new Label
             {
                 Text = $"🌍 Country: {_movie.Country}",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Belwe Bd BT", 9),
                 AutoSize = true
             };
 
             Label lblStudio = new Label
             {
                 Text = $"🎥 Studio: {_movie.Studio}",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Belwe Bd BT", 9),
                 AutoSize = true
             };
 
             Label lblDescription = new Label
             {
                 Text = _movie.Description,
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Belwe Bd BT", 9),
                 ForeColor = Color.Black,
-                BackColor = Color.AntiqueWhite,
+                BackColor = Color.Wheat,
                 Padding = new Padding(8),
                 AutoSize = true,
                 MaximumSize = new Size(panelDetails.Width - 20, 0),
@@ -105,18 +105,6 @@ namespace Сoursework
             layout.Controls.Add(lblDescription);
 
             panelDetails.Controls.Add(layout);
-        }
-
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblStudio_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

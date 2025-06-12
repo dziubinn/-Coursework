@@ -27,6 +27,7 @@ namespace Сoursework
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.LoadFromFile(filePath);
             movies = movieLibrary.GetAllMovies();
+            favoriteMovies = movies.Where(m => m.IsFavorite).ToList();
             this.KeyPreview = true;
             this.KeyDown += MainForm_KeyDown;
 
@@ -44,20 +45,26 @@ namespace Сoursework
             flowPanelMovies.Controls.Clear();
 
             var movies = moviesToDisplay ?? movieLibrary.GetAllMovies();
+            var currentFavorites = movies.Where(m => m.IsFavorite).ToList();
 
             foreach (var movie in movies)
             {
                 var card = new MovieCardControl();
-                card.SetMovie(movie);
+                card.SetMovie(movie, currentFavorites);
                 card.FavoriteAdded += (s, m) =>
                 {
-                    if (!favoriteMovies.Contains(m)) favoriteMovies.Add(m);
+                    m.IsFavorite = true;
+                    movieLibrary.UpdateMovie(m);
                 };
-                card.FavoriteRemoved += (s, m) => favoriteMovies.Remove(m);
+
+                card.FavoriteRemoved += (s, m) =>
+                {
+                    m.IsFavorite = false;
+                    movieLibrary.UpdateMovie(m);
+                };
 
 
                 card.Selected += MovieCardControl_Selected;
-
                 flowPanelMovies.Controls.Add(card);
             }
         }
@@ -83,6 +90,12 @@ namespace Сoursework
                 {
                     movieLibrary.AddMovie(form.Movie);
                     movies = movieLibrary.GetAllMovies();
+
+                    if (form.Movie.IsFavorite && !favoriteMovies.Contains(form.Movie))
+                    {
+                        favoriteMovies.Add(form.Movie);
+                    }
+
                     RefreshMovieCards();
                 }
                 catch (Exception ex)
@@ -112,6 +125,18 @@ namespace Сoursework
             if (editForm.ShowDialog() == DialogResult.OK)
             {
                 movieLibrary.UpdateMovie(editForm.Movie);
+
+                var updatedMovie = editForm.Movie;
+
+                if (updatedMovie.IsFavorite && !favoriteMovies.Contains(updatedMovie))
+                {
+                    favoriteMovies.Add(updatedMovie);
+                }
+                else if (!updatedMovie.IsFavorite && favoriteMovies.Contains(updatedMovie))
+                {
+                    favoriteMovies.Remove(updatedMovie);
+                }
+
                 RefreshMovieCards();
             }
         }
@@ -407,22 +432,20 @@ namespace Сoursework
         }
 
         private List<Movie> favoriteMovies = new List<Movie>();
-        private void btnOpenFavorites_Click(object sender, EventArgs e)
+        private void btnOpenFavorites_Click (object sender, EventArgs e)
         {
+            var favoriteMovies = movieLibrary.GetAllMovies().Where(m => m.IsFavorite).ToList();
             if (favoriteMovies.Count == 0)
             {
                 MessageBox.Show("You have no favorite movies selected.", "Favorites", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var favoritesForm = new FavoritesForm(favoriteMovies);
-            favoritesForm.ShowDialog();
+            var favForm = new FavoritesForm(favoriteMovies, movieLibrary);
+            favForm.ShowDialog();
+            movies = movieLibrary.GetAllMovies();
 
-            foreach (var card in flowPanelMovies.Controls.OfType<MovieCardControl>())
-            {
-                var movie = card.Movie;
-                card.SetFavorite(favoriteMovies.Contains(movie));
-            }
+            RefreshMovieCards();
         }
     }
 }

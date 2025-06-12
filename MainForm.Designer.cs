@@ -32,7 +32,7 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            btnOpenFavorites = new Button();
+            btnOpenFavorites = new Label();
             btnSearch = new Button();
             btnFilter = new Button();
             PanelSearch = new Panel();
@@ -49,7 +49,7 @@
             // 
             // flowPanelControls
             // 
-            flowPanelControls.BackColor = Color.AntiqueWhite;
+            flowPanelControls.BackColor = Color.OldLace;
             flowPanelControls.BorderStyle = BorderStyle.FixedSingle;
             flowPanelControls.Controls.Add(btnAdd);
             flowPanelControls.Controls.Add(btnEdit);
@@ -65,6 +65,7 @@
             // btnAdd
             // 
             btnAdd.FlatStyle = FlatStyle.Popup;
+            btnAdd.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdd.Location = new Point(8, 5);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(85, 23);
@@ -76,6 +77,7 @@
             // btnEdit
             // 
             btnEdit.FlatStyle = FlatStyle.Popup;
+            btnEdit.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnEdit.Location = new Point(99, 5);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(85, 23);
@@ -87,6 +89,7 @@
             // btnDelete
             // 
             btnDelete.FlatStyle = FlatStyle.Popup;
+            btnDelete.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnDelete.Location = new Point(190, 5);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(85, 23);
@@ -97,24 +100,19 @@
             // 
             // btnOpenFavorites
             // 
-            btnOpenFavorites.Anchor = AnchorStyles.Top;
-            btnOpenFavorites.BackColor = Color.AntiqueWhite;
-            btnOpenFavorites.FlatAppearance.BorderSize = 0;
-            btnOpenFavorites.FlatAppearance.MouseDownBackColor = Color.AntiqueWhite;
-            btnOpenFavorites.FlatAppearance.MouseOverBackColor = Color.AntiqueWhite;
-            btnOpenFavorites.FlatStyle = FlatStyle.Flat;
-            btnOpenFavorites.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnOpenFavorites.Font = new Font("Belwe Bd BT", 17F, FontStyle.Regular, GraphicsUnit.Point);
             btnOpenFavorites.ForeColor = Color.Firebrick;
-            btnOpenFavorites.Location = new Point(281, 5);
+            btnOpenFavorites.Location = new Point(281, 2);
             btnOpenFavorites.Name = "btnOpenFavorites";
-            btnOpenFavorites.Size = new Size(34, 23);
+            btnOpenFavorites.Size = new Size(38, 28);
             btnOpenFavorites.TabIndex = 3;
             btnOpenFavorites.Text = "♥";
-            btnOpenFavorites.UseVisualStyleBackColor = false;
+            btnOpenFavorites.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnSearch
             // 
             btnSearch.FlatStyle = FlatStyle.Popup;
+            btnSearch.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnSearch.Location = new Point(215, 49);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 23);
@@ -126,6 +124,7 @@
             // btnFilter
             // 
             btnFilter.FlatStyle = FlatStyle.Popup;
+            btnFilter.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnFilter.Location = new Point(215, 284);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
@@ -153,26 +152,27 @@
             // SearchFilterslbl
             // 
             SearchFilterslbl.AutoSize = true;
-            SearchFilterslbl.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            SearchFilterslbl.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             SearchFilterslbl.Location = new Point(15, 108);
             SearchFilterslbl.Name = "SearchFilterslbl";
-            SearchFilterslbl.Size = new Size(121, 21);
+            SearchFilterslbl.Size = new Size(134, 23);
             SearchFilterslbl.TabIndex = 8;
             SearchFilterslbl.Text = "Search filters";
             // 
             // TitleNamelbl
             // 
             TitleNamelbl.AutoSize = true;
-            TitleNamelbl.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            TitleNamelbl.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             TitleNamelbl.Location = new Point(15, 26);
             TitleNamelbl.Name = "TitleNamelbl";
-            TitleNamelbl.Size = new Size(101, 21);
+            TitleNamelbl.Size = new Size(109, 23);
             TitleNamelbl.TabIndex = 7;
             TitleNamelbl.Text = "Title name";
             // 
             // cmbFilterValue
             // 
             cmbFilterValue.DropDownHeight = 230;
+            cmbFilterValue.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cmbFilterValue.FormattingEnabled = true;
             cmbFilterValue.IntegralHeight = false;
             cmbFilterValue.Location = new Point(15, 284);
@@ -183,6 +183,7 @@
             // 
             // cmbFilterBy
             // 
+            cmbFilterBy.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cmbFilterBy.FormattingEnabled = true;
             cmbFilterBy.Items.AddRange(new object[] { "Genre", "Year", "Director", "Country", "Main actor", "Duration", "Studio" });
             cmbFilterBy.Location = new Point(15, 132);
@@ -204,16 +205,16 @@
             flowPanelMovies.AutoScroll = true;
             flowPanelMovies.Location = new Point(344, 99);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(609, 452);
+            flowPanelMovies.Size = new Size(630, 452);
             flowPanelMovies.TabIndex = 6;
             // 
             // lblHeader
             // 
             lblHeader.AutoSize = true;
-            lblHeader.Font = new Font("Bauhaus 93", 22.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeader.Font = new Font("Belwe Bd BT", 23.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblHeader.Location = new Point(344, 11);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(149, 34);
+            lblHeader.Size = new Size(171, 37);
             lblHeader.TabIndex = 7;
             lblHeader.Text = "All Movies";
             // 
@@ -221,7 +222,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(953, 563);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(974, 563);
             Controls.Add(lblHeader);
             Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
@@ -259,6 +261,6 @@
         private Label SearchFilterslbl;
         private Label TitleNamelbl;
         private Label lblHeader;
-        private Button btnOpenFavorites;
+        private Label btnOpenFavorites;
     }
 }

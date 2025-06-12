@@ -28,47 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            labelFavorite = new Label();
             flowLayoutPanel = new FlowLayoutPanel();
             SuspendLayout();
             // 
-            // label1
+            // labelFavorite
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(93, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(139, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Favorite movies";
+            labelFavorite.AutoSize = true;
+            labelFavorite.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelFavorite.Location = new Point(107, 9);
+            labelFavorite.Name = "labelFavorite";
+            labelFavorite.Size = new Size(157, 23);
+            labelFavorite.TabIndex = 0;
+            labelFavorite.Text = "Favorite movies";
             // 
             // flowLayoutPanel
             // 
             flowLayoutPanel.AutoScroll = true;
             flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel.Location = new Point(12, 24);
+            flowLayoutPanel.Location = new Point(31, 44);
             flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(312, 637);
+            flowLayoutPanel.Size = new Size(331, 516);
             flowLayoutPanel.TabIndex = 1;
+            flowLayoutPanel.WrapContents = false;
             // 
             // FavoritesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(334, 661);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(374, 561);
             Controls.Add(flowLayoutPanel);
-            Controls.Add(label1);
-            MaximumSize = new Size(350, 700);
-            MinimumSize = new Size(350, 700);
+            Controls.Add(labelFavorite);
+            MaximumSize = new Size(390, 600);
+            MinimumSize = new Size(385, 600);
             Name = "FavoritesForm";
             Text = "FavoritesForm";
+            KeyDown += FavoritesForm_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label labelFavorite;
         private FlowLayoutPanel flowLayoutPanel;
     }
 }
