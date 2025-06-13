@@ -4,6 +4,10 @@ using System.Windows.Forms;
 using Сoursework.Models;
 using Сoursework;
 
+/// <summary>
+/// Візуальний елемент керування для відображення інформації про фільм у вигляді картки.
+/// Містить назву, рік, жанр, рейтинг, кнопки деталей та улюбленого.
+/// </summary>
 public class MovieCardControl : UserControl
 {
     private bool isSelected;
@@ -13,8 +17,11 @@ public class MovieCardControl : UserControl
     private Button btnDetails;
     private Button btnFavorite;
     private Movie currentMovie;
+
+    /// <summary>Отримує фільм, представлений цією карткою.</summary>
     public Movie Movie { get; private set; }
 
+    /// <summary>Вказує, чи є картка вибраною. Змінює колір фону.</summary>
     public bool IsSelected
     {
         get => isSelected;
@@ -25,6 +32,7 @@ public class MovieCardControl : UserControl
         }
     }
 
+    /// <summary>Ініціалізує новий екземпляр елемента керування карткою фільму.</summary>
     public MovieCardControl()
     {
         InitializeComponents();
@@ -41,6 +49,7 @@ public class MovieCardControl : UserControl
     private Label lblInfo;
     private Label lblRating;
 
+    /// <summary>Ініціалізує всі графічні компоненти картки.</summary>
     private void InitializeComponents()
     {
         this.Size = new Size(300, 100);
@@ -97,6 +106,7 @@ public class MovieCardControl : UserControl
         this.Controls.Add(btnFavorite);
     }
 
+    /// <summary>Встановлює фільм для відображення в картці.</summary>
     public void SetMovie(Movie movie, List<Movie> globalFavorites = null)
     {
         currentMovie = movie;
@@ -120,6 +130,7 @@ public class MovieCardControl : UserControl
         }
     }
 
+    /// <summary>Відкриває вікно з деталями про фільм.</summary>
     private void BtnDetails_Click(object sender, EventArgs e)
     {
         if (currentMovie != null)
@@ -129,6 +140,7 @@ public class MovieCardControl : UserControl
         }
     }
 
+    /// <summary>Перемикає статус улюбленого фільму при натисканні кнопки.</summary>
     private void BtnFavorite_Click(object sender, EventArgs e)
     {
         isFavorite = !isFavorite;
@@ -140,20 +152,29 @@ public class MovieCardControl : UserControl
         else
             FavoriteRemoved?.Invoke(this, currentMovie);
     }
+
+    /// <summary>Подія, яка виникає при додаванні фільму до улюблених.</summary>
     public event EventHandler<Movie> FavoriteAdded;
+
+    /// <summary>Подія, яка виникає при видаленні фільму з улюблених.</summary>
     public event EventHandler<Movie> FavoriteRemoved;
 
+    /// <summary>Подія, яка виникає при виборі картки користувачем.</summary>
     public event EventHandler Selected;
 
+    /// <summary>Обробляє клік миші по картці — активує подію вибору.</summary>
     private void MovieCardControl_Click(object sender, EventArgs e)
     {
         Selected?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>Відображає вікно з деталями фільму (симуляція кліку по кнопці деталей).</summary>
     public void ShowDetails()
     {
         btnDetails.PerformClick();
     }
+
+    /// <summary>Показує чи приховує статус "улюбленого" фільму на картці.</summary>
     public bool IsFavorite
     {
         get => isFavorite;
@@ -163,9 +184,5 @@ public class MovieCardControl : UserControl
             btnFavorite.Text = isFavorite ? "♥" : "♡";
             btnFavorite.ForeColor = isFavorite ? Color.Firebrick : Color.Gray;
         }
-    }
-    public void SetFavorite(bool favorite)
-    {
-        IsFavorite = favorite;
     }
 }

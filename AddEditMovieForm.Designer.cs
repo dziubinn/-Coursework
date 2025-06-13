@@ -17,7 +17,7 @@
         private NumericUpDown numRating;
         private CheckBox chkFavorite;
 
-        private Button btnOK;
+        private Button btnSave;
         private Button btnCancel;
 
         protected override void Dispose(bool disposing)
@@ -39,7 +39,7 @@
             numDuration = new NumericUpDown();
             numRating = new NumericUpDown();
             chkFavorite = new CheckBox();
-            btnOK = new Button();
+            btnSave = new Button();
             btnCancel = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -155,22 +155,22 @@
             chkFavorite.Size = new Size(19, 24);
             chkFavorite.TabIndex = 11;
             // 
-            // btnOK
+            // btnSave
             // 
-            btnOK.Anchor = AnchorStyles.Top;
-            btnOK.BackColor = Color.YellowGreen;
-            btnOK.FlatAppearance.BorderColor = Color.Black;
-            btnOK.FlatAppearance.BorderSize = 2;
-            btnOK.FlatStyle = FlatStyle.Flat;
-            btnOK.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnOK.Location = new Point(32, 576);
-            btnOK.Name = "btnOK";
-            btnOK.Size = new Size(94, 26);
-            btnOK.TabIndex = 12;
-            btnOK.Text = "Save";
-            btnOK.TextAlign = ContentAlignment.TopCenter;
-            btnOK.UseVisualStyleBackColor = false;
-            btnOK.Click += btnOK_Click;
+            btnSave.Anchor = AnchorStyles.Top;
+            btnSave.BackColor = Color.YellowGreen;
+            btnSave.FlatAppearance.BorderColor = Color.Black;
+            btnSave.FlatAppearance.BorderSize = 2;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSave.Location = new Point(32, 576);
+            btnSave.Name = "btnOK";
+            btnSave.Size = new Size(94, 26);
+            btnSave.TabIndex = 12;
+            btnSave.Text = "Save";
+            btnSave.TextAlign = ContentAlignment.TopCenter;
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
@@ -324,7 +324,7 @@
             Controls.Add(numRating);
             Controls.Add(txtDescription);
             Controls.Add(chkFavorite);
-            Controls.Add(btnOK);
+            Controls.Add(btnSave);
             Controls.Add(btnCancel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;

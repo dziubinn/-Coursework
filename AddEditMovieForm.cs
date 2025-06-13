@@ -5,12 +5,18 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Сoursework
 {
+    /// <summary>Форма для додавання або редагування інформації про фільм.</summary>
     public partial class AddEditMovieForm : Form
     {
+        /// <summary>Отримує або встановлює об'єкт фільму, який створюється або редагується у формі.</summary>
         public Movie Movie { get; private set; }
 
         private bool isEditMode;
 
+        /// <summary>
+        /// Ініціалізує новий екземпляр форми для додавання або редагування фільму.
+        /// Якщо переданий фільм не null — форма працює в режимі редагування.
+        /// </summary>
         public AddEditMovieForm(Movie movie = null)
         {
             InitializeComponent();
@@ -49,6 +55,9 @@ namespace Сoursework
             }
         }
 
+        /// <summary>
+        /// Обробник події натискання клавіш на формі. Реагує на клавіші Esc (відміна), Enter (підтвердження) та F1 (допомога).
+        /// </summary>
         private void AddEditMovieForm_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Escape)
@@ -57,15 +66,16 @@ namespace Сoursework
             }
             else if(e.KeyCode == Keys.Enter)
             {
-                btnOK.PerformClick();
+                btnSave.PerformClick();
             }
             else if(e.KeyCode == Keys.F1)
             {
-                MessageBox.Show("This is a form of adding or editing a movie. Fill in all required fields, then click:\n Enter - Agree\n Esc - Refuse\n Tab – Move to the next field\n Shift-Tab – return to the previous field.",
+                MessageBox.Show("This is a form of adding or editing a movie. Fill in all required fields, then click:\nEnter - Agree\nEsc - Refuse\nTab – Move to the next field\nShift-Tab – return to the previous field.",
                                 "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
+        /// <summary>Заповнює поля форми інформацією із переданого об'єкта фільму.</summary>
         private void FillFormWithMovie(Movie movie)
         {
             txtTitle.Text = movie.Title;
@@ -81,7 +91,10 @@ namespace Сoursework
             chkFavorite.Checked = movie.IsFavorite;
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обробник події натискання кнопки "ОК".
+        /// Перевіряє валідність введених даних, оновлює об'єкт Movie і закриває форму з результатом OK.</summary>
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTitle.Text) ||
                 string.IsNullOrWhiteSpace(txtStudio.Text) ||
@@ -94,7 +107,6 @@ namespace Сoursework
                         "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
 
             Movie.Title = txtTitle.Text.Trim();
             Movie.Studio = txtStudio.Text.Trim();
@@ -112,6 +124,7 @@ namespace Сoursework
             Close();
         }
 
+        /// <summary>Обробник події натискання кнопки "Відміна". Закриває форму без збереження змін.</summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

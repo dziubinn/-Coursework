@@ -4,17 +4,36 @@ using Сoursework.Models;
 
 namespace Сoursework
 {
+    /// <summary>
+    /// Форма для відображення детальної інформації про фільм.
+    /// Містить заголовок, рейтинг, рік, тривалість, жанр, режисера, акторів, країну, студію та опис.
+    /// </summary>
     public partial class MovieDetailsForm : Form
     {
         private Movie _movie;
 
+        /// <summary>Ініціалізує новий екземпляр форми з деталями фільму.</summary>
         public MovieDetailsForm(Movie movie)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.KeyPreview = true;
+            this.KeyDown += MovieDetailsForm_KeyDown;
             _movie = movie;
             DisplayMovieDetails();
         }
 
+        /// <summary>Обробник події натискання клавіш на формі. Закриває форму при натисканні Esc.</summary>
+        private void MovieDetailsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>Створює і заповнює інтерфейс форми інформацією про фільм.</summary>
         private void DisplayMovieDetails()
         {
             panelDetails.Controls.Clear();

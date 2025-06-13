@@ -16,7 +16,7 @@ namespace Сoursework
     /// Головна форма застосунку "Фільмотека".
     /// Забезпечує графічний інтерфейс користувача для перегляду, пошуку, фільтрації, додавання, редагування та видалення фільмів, а також перегляду улюблених.
     /// </summary>
-    public partial class MainForm : Form
+    public partial class UserForm : Form
     {
         private MovieLibrary movieLibrary = new MovieLibrary();
         private List<Movie> movies = new List<Movie>();
@@ -27,7 +27,7 @@ namespace Сoursework
         /// Конструктор головної форми програми.
         /// Ініціалізує компоненти форми та підписується на події завантаження форми і натискання кнопки відкриття обраного.
         /// </summary>
-        public MainForm()
+        public UserForm()
         {
             InitializeComponent();
             this.Load += MainForm_Load;
@@ -107,29 +107,8 @@ namespace Сoursework
                     "\nEsc - Refuse" +
                     "\nTab – Move to the next field" +
                     "\nShift-Tab – return to the previous field" +
-                    "\nAdd - Ctrl + N" +
-                    "\nEdit - Ctrl + E" +
-                    "\nDelete - Ctrl + D or Delete" +
                     "\nInfo - Ctrl + I",
                                 "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            else if (e.Control && e.KeyCode == Keys.N)
-            {
-                btnAdd.PerformClick();
-                e.Handled = true;
-            }
-
-            else if (e.Control && e.KeyCode == Keys.E)
-            {
-                btnEdit.PerformClick();
-                e.Handled = true;
-            }
-
-            else if ((e.Control && e.KeyCode == Keys.D) || e.KeyCode == Keys.Delete)
-            {
-                btnDelete.PerformClick();
-                e.Handled = true;
             }
 
             else if (e.Control && e.KeyCode == Keys.I)
@@ -197,102 +176,6 @@ namespace Сoursework
         private void OnCardSelected(object sender, EventArgs e)
         {
             selectedCard = (MovieCardControl)sender;
-        }
-
-        /// <summary>
-        /// Обробник події натискання кнопки "Додати фільм".
-        /// Відкриває форму для додавання нового фільму, зберігає його у бібліотеку, оновлює список фільмів і обране.
-        /// </summary>
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var form = new AddEditMovieForm();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    movieLibrary.AddMovie(form.Movie);
-                    movies = movieLibrary.GetAllMovies();
-
-                    if (form.Movie.IsFavorite && !favoriteMovies.Contains(form.Movie))
-                    {
-                        favoriteMovies.Add(form.Movie);
-                    }
-
-                    RefreshMovieCards();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Обробник події натискання кнопки "Редагувати фільм".
-        /// Відкриває форму редагування для вибраного фільму, оновлює дані в бібліотеці, синхронізує обране і оновлює відображення карток.
-        /// </summary>
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            var selectedCard = flowPanelMovies.Controls
-                .OfType<MovieCardControl>()
-                .FirstOrDefault(c => c.IsSelected);
-
-            if (selectedCard == null)
-            {
-                MessageBox.Show("Choose movie first");
-                return;
-            }
-
-            var selectedMovie = selectedCard.Movie;
-
-            var editForm = new AddEditMovieForm(selectedMovie);
-
-            if (editForm.ShowDialog() == DialogResult.OK)
-            {
-                movieLibrary.UpdateMovie(editForm.Movie);
-
-                var updatedMovie = editForm.Movie;
-
-                if (updatedMovie.IsFavorite && !favoriteMovies.Contains(updatedMovie))
-                {
-                    favoriteMovies.Add(updatedMovie);
-                }
-                else if (!updatedMovie.IsFavorite && favoriteMovies.Contains(updatedMovie))
-                {
-                    favoriteMovies.Remove(updatedMovie);
-                }
-
-                RefreshMovieCards();
-            }
-        }
-
-        /// <summary>
-        /// Обробник події натискання кнопки "Видалити фільм".
-        /// Видаляє вибраний фільм із бібліотеки після підтвердження користувачем, та оновлює відображення карток.
-        /// </summary>
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            var selectedCard = flowPanelMovies.Controls
-                .OfType<MovieCardControl>()
-                .FirstOrDefault(c => c.IsSelected);
-
-            if (selectedCard == null)
-            {
-                MessageBox.Show("Choose movie first");
-                return;
-            }
-
-            var selectedMovie = selectedCard.Movie;
-            var confirmResult = MessageBox.Show($"Are you sure you want to delete this movie:\n\n{selectedMovie.Title}?",
-                "Delete confirmation",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirmResult == DialogResult.Yes)
-            {
-                movieLibrary.DeleteMovie(selectedMovie);
-                RefreshMovieCards();
-            }
         }
 
         /// <summary>

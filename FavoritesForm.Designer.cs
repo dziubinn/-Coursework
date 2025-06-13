@@ -36,7 +36,7 @@
             // 
             labelFavorite.AutoSize = true;
             labelFavorite.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelFavorite.Location = new Point(107, 9);
+            labelFavorite.Location = new Point(99, 9);
             labelFavorite.Name = "labelFavorite";
             labelFavorite.Size = new Size(157, 23);
             labelFavorite.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = Color.OldLace;
             ClientSize = new Size(374, 561);
             Controls.Add(flowLayoutPanel);
             Controls.Add(labelFavorite);

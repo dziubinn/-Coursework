@@ -11,11 +11,14 @@ using Сoursework.Models;
 
 namespace Сoursework
 {
+    /// <summary>Форма для відображення улюблених фільмів користувача.</summary>
     public partial class FavoritesForm : Form
     {
         private MovieLibrary movieLibrary;
         private List<Movie> favoriteMovies;
         private MovieCardControl selectedCard;
+
+        /// <summary>Ініціалізує новий екземпляр форми для показу улюблених фільмів.</summary>
         public FavoritesForm(List<Movie> favoriteMovies, MovieLibrary library)
         {
             InitializeComponent();
@@ -28,6 +31,8 @@ namespace Сoursework
 
             LoadFavoriteMovies(favoriteMovies);
         }
+
+        /// <summary>Завантажує і відображає список улюблених фільмів на панелі з картками.</summary>
         private void LoadFavoriteMovies(List<Movie> favoriteMovies)
         {
             flowLayoutPanel.Controls.Clear();
@@ -62,6 +67,9 @@ namespace Сoursework
             }
         }
 
+        /// <summary>
+        /// Обробник події вибору картки фільму. Відзначає вибрану картку та знімає виділення з попередньої.
+        /// </summary>
         private void Card_Selected(object sender, EventArgs e)
         {
             if (selectedCard != null)
@@ -73,6 +81,10 @@ namespace Сoursework
                 selectedCard.IsSelected = true;
         }
 
+        /// <summary>
+        /// Обробник події натискання клавіш на формі.
+        /// Закриває форму при натисканні Esc та показує деталі вибраного фільму при Ctrl+I, F1 - допомога.
+        /// </summary>
         private void FavoritesForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -87,6 +99,11 @@ namespace Сoursework
                     selectedCard.ShowDetails();
                 }
                 e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.F1)
+            {
+                MessageBox.Show("This is a form of viewing your favorite movies. \nEnter - Agree\nEsc - Refuse\nTab – Move to the next field\nShift-Tab – return to the previous field.\nInfo - Ctrl + I",
+                                "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
