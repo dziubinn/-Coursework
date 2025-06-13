@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Сoursework.Models;
+using System.IO;
 
 namespace Сoursework
 {
@@ -22,7 +23,6 @@ namespace Сoursework
         private MovieLibrary movieLibrary = new MovieLibrary();
         private List<Movie> movies = new List<Movie>();
         private MovieCardControl selectedCard;
-        private List<Movie> favoriteMovies = new List<Movie>();
         private string userLogin;
 
         /// <summary>
@@ -48,7 +48,6 @@ namespace Сoursework
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.LoadFromFile(filePath);
             movies = movieLibrary.GetAllMovies();
-            favoriteMovies = movies.Where(m => m.IsFavorite).ToList();
 
             this.KeyPreview = true;
             this.KeyDown += MainForm_KeyDown;
@@ -70,6 +69,8 @@ namespace Сoursework
         {
             string filePath = Path.Combine(Application.StartupPath, "movies.json");
             movieLibrary.SaveToFile(filePath);
+            var favorites = FavoritesManager.LoadFavorites(userLogin);
+            FavoritesManager.SaveFavorites(userLogin, favorites);
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace Сoursework
             flowPanelMovies.Controls.Clear();
 
             var movies = moviesToDisplay ?? movieLibrary.GetAllMovies();
-            var currentFavorites = movies.Where(m => m.IsFavorite).ToList();
+            var currentFavorites = FavoritesManager.LoadFavorites(userLogin);
 
             foreach (var movie in movies)
             {
@@ -142,14 +143,12 @@ namespace Сoursework
                 card.SetMovie(movie, currentFavorites);
                 card.FavoriteAdded += (s, m) =>
                 {
-                    m.IsFavorite = true;
-                    movieLibrary.UpdateMovie(m);
+                    FavoritesManager.AddFavorite(userLogin, m.Title);
                 };
 
                 card.FavoriteRemoved += (s, m) =>
                 {
-                    m.IsFavorite = false;
-                    movieLibrary.UpdateMovie(m);
+                    FavoritesManager.RemoveFavorites(userLogin, m.Title);
                 };
 
                 card.Selected += MovieCardControl_Selected;
@@ -188,7 +187,11 @@ namespace Сoursework
         /// </summary>
         private void btnOpenFavorites_Click(object sender, EventArgs e)
         {
-            var favoriteMovies = movieLibrary.GetAllMovies().Where(m => m.IsFavorite).ToList();
+            var favoriteTitles = FavoritesManager.LoadFavorites(userLogin);
+            var allMovies = movieLibrary.GetAllMovies();
+            var favoriteMovies = allMovies
+                .Where(m => favoriteTitles.Contains(m.Title))
+                .ToList();
 
             if (favoriteMovies.Count == 0)
             {
@@ -390,7 +393,7 @@ namespace Сoursework
                 flowPanelMovies.Controls.Clear();
                 Label noResults = new Label
                 {
-                    Text = "Фільми не знайдені",
+                    Text = "No movies found.",
                     AutoSize = true,
                     ForeColor = Color.Red,
                     Font = new Font("Arial", 12, FontStyle.Bold),

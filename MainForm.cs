@@ -151,12 +151,16 @@ namespace Сoursework
             flowPanelMovies.Controls.Clear();
 
             var movies = moviesToDisplay ?? movieLibrary.GetAllMovies();
-            var currentFavorites = movies.Where(m => m.IsFavorite).ToList();
+            var currentFavorites = movies
+                .Where(m => m.IsFavorite)
+                .Select(m => m.Title)
+                .ToList();
 
             foreach (var movie in movies)
             {
                 var card = new MovieCardControl();
                 card.SetMovie(movie, currentFavorites);
+
                 card.FavoriteAdded += (s, m) =>
                 {
                     m.IsFavorite = true;

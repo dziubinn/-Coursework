@@ -107,7 +107,7 @@ public class MovieCardControl : UserControl
     }
 
     /// <summary>Встановлює фільм для відображення в картці.</summary>
-    public void SetMovie(Movie movie, List<Movie> globalFavorites = null)
+    public void SetMovie(Movie movie, List<string> favoriteTitles = null)
     {
         currentMovie = movie;
         Movie = movie;
@@ -116,7 +116,7 @@ public class MovieCardControl : UserControl
         lblInfo.Text = $"{movie.Year}  {movie.Duration}m  {movie.Genre}";
         lblRating.Text = $"★ {movie.Rating:F1}";
 
-        if (globalFavorites != null && globalFavorites.Contains(movie))
+        if (favoriteTitles != null && favoriteTitles.Contains(movie.Title))
         {
             isFavorite = true;
             btnFavorite.Text = "♥";

@@ -43,10 +43,11 @@ namespace Сoursework
                 return;
             }
 
+            var favoriteTitles = favoriteMovies.Select(m => m.Title).ToList();
             foreach (var movie in favoriteMovies.ToList())
             {
                 var card = new MovieCardControl();
-                card.SetMovie(movie, favoriteMovies);
+                card.SetMovie(movie, favoriteTitles);
                 card.Selected += Card_Selected;
 
                 card.FavoriteRemoved += (s, m) =>

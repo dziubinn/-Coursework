@@ -15,8 +15,8 @@ namespace Сoursework
     {
         public LoginForm()
         {
-            InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            InitializeComponent();
             this.KeyPreview = true;
             this.KeyDown += LoginForm_KeyDown;
         }
