@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,17 +23,20 @@ namespace Сoursework
         private List<Movie> movies = new List<Movie>();
         private MovieCardControl selectedCard;
         private List<Movie> favoriteMovies = new List<Movie>();
+        private string userLogin;
 
         /// <summary>
         /// Конструктор головної форми програми.
         /// Ініціалізує компоненти форми та підписується на події завантаження форми і натискання кнопки відкриття обраного.
         /// </summary>
-        public UserForm()
+        public UserForm(string login)
         {
             InitializeComponent();
             this.Load += MainForm_Load;
             this.StartPosition = FormStartPosition.CenterScreen;
             btnOpenFavorites.Click += btnOpenFavorites_Click;
+            userLogin = login;
+            welcomeLabel.Text = $"Welcome, {userLogin}!";
         }
 
         /// <summary>
