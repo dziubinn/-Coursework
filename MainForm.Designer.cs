@@ -117,7 +117,7 @@
             btnSearch.Location = new Point(215, 65);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 23);
-            btnSearch.TabIndex = 4;
+            btnSearch.TabIndex = 5;
             btnSearch.Text = "Search🔍";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
@@ -129,7 +129,7 @@
             btnFilter.Location = new Point(215, 284);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
-            btnFilter.TabIndex = 7;
+            btnFilter.TabIndex = 8;
             btnFilter.Text = "Filter";
             btnFilter.UseVisualStyleBackColor = true;
             btnFilter.Click += btnFilter_Click;
@@ -194,7 +194,7 @@
             cmbFilterValue.Location = new Point(15, 284);
             cmbFilterValue.Name = "cmbFilterValue";
             cmbFilterValue.Size = new Size(194, 23);
-            cmbFilterValue.TabIndex = 6;
+            cmbFilterValue.TabIndex = 7;
             // 
             // cmbFilterBy
             // 
@@ -204,16 +204,16 @@
             cmbFilterBy.Location = new Point(15, 132);
             cmbFilterBy.Name = "cmbFilterBy";
             cmbFilterBy.Size = new Size(194, 23);
-            cmbFilterBy.TabIndex = 5;
+            cmbFilterBy.TabIndex = 6;
             cmbFilterBy.SelectedIndexChanged += cmbFilterBy_SelectedIndexChanged;
             // 
             // txtSearch
             // 
-            txtSearch.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearch.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtSearch.Location = new Point(15, 65);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(194, 25);
-            txtSearch.TabIndex = 3;
+            txtSearch.Size = new Size(194, 22);
+            txtSearch.TabIndex = 4;
             // 
             // flowPanelMovies
             // 

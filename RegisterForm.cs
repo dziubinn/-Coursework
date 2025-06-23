@@ -10,10 +10,15 @@ using System.Windows.Forms;
 
 namespace Сoursework
 {
+    /// <summary>
+    /// Форма реєстрації нового користувача.
+    /// Забезпечує введення персональних даних і створення облікового запису.
+    /// </summary>
     public partial class RegisterForm: Form
     {
         private string usersFile = "";
 
+        /// <summary>Ініціалізує форму реєстрації, встановлює позицію на екрані та обробник клавіш.</summary>
         public RegisterForm()
         {
             InitializeComponent();
@@ -21,6 +26,13 @@ namespace Сoursework
             this.KeyPreview = true;
             this.KeyDown += RegisterForm_KeyDown;
         }
+
+        /// <summary>
+        /// Обробляє натискання клавіш:
+        /// — Enter: ініціює реєстрацію;
+        /// — Escape: запитує підтвердження на вихід;
+        /// — F1: показує допомогу щодо реєстрації.
+        /// </summary>
         private void RegisterForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -43,6 +55,11 @@ namespace Сoursework
             }
         }
 
+        /// <summary>
+        /// Обробляє натискання кнопки реєстрації:
+        /// перевіряє правильність введених даних, створює нового користувача,
+        /// додає його до системи та відкриває форму користувача.
+        /// </summary>
         private void registerBtn_Click(object sender, EventArgs e)
         {
             string login = loginTextBox.Text.Trim();
@@ -90,12 +107,16 @@ namespace Сoursework
             userForm.Show();
             this.Hide();
         }
+
+        /// <summary>Відкриває головну форму в режимі адміністратора.</summary>
         private void adminBtn_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
             mainForm.Show();
             this.Hide();
         }
+
+        /// <summary>Повертає користувача на форму авторизації.</summary>
         private void loginBtn_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();

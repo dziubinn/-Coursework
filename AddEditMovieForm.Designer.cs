@@ -163,7 +163,7 @@
             btnSave.FlatAppearance.BorderSize = 2;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSave.Location = new Point(13, 575);
+            btnSave.Location = new Point(42, 575);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 26);
             btnSave.TabIndex = 12;
@@ -180,7 +180,7 @@
             btnCancel.FlatAppearance.BorderSize = 2;
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCancel.Location = new Point(154, 574);
+            btnCancel.Location = new Point(167, 574);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 26);
             btnCancel.TabIndex = 13;
@@ -192,7 +192,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(90, 9);
+            label1.Location = new Point(25, 9);
             label1.Name = "label1";
             label1.Size = new Size(46, 19);
             label1.TabIndex = 14;
@@ -202,7 +202,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(75, 52);
+            label2.Location = new Point(25, 52);
             label2.Name = "label2";
             label2.Size = new Size(61, 19);
             label2.TabIndex = 15;
@@ -212,7 +212,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(79, 99);
+            label3.Location = new Point(25, 99);
             label3.Name = "label3";
             label3.Size = new Size(57, 19);
             label3.TabIndex = 16;
@@ -222,7 +222,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(90, 139);
+            label4.Location = new Point(25, 140);
             label4.Name = "label4";
             label4.Size = new Size(46, 19);
             label4.TabIndex = 17;
@@ -232,7 +232,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(64, 184);
+            label5.Location = new Point(25, 184);
             label5.Name = "label5";
             label5.Size = new Size(72, 19);
             label5.TabIndex = 18;
@@ -242,7 +242,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(63, 235);
+            label6.Location = new Point(25, 235);
             label6.Name = "label6";
             label6.Size = new Size(73, 19);
             label6.TabIndex = 19;
@@ -252,7 +252,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(37, 281);
+            label7.Location = new Point(25, 281);
             label7.Name = "label7";
             label7.Size = new Size(99, 19);
             label7.TabIndex = 20;
@@ -262,7 +262,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(13, 326);
+            label8.Location = new Point(25, 326);
             label8.Name = "label8";
             label8.Size = new Size(123, 19);
             label8.TabIndex = 21;
@@ -272,7 +272,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(31, 374);
+            label9.Location = new Point(25, 373);
             label9.Name = "label9";
             label9.Size = new Size(105, 19);
             label9.TabIndex = 22;
@@ -282,7 +282,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(42, 420);
+            label10.Location = new Point(25, 420);
             label10.Name = "label10";
             label10.Size = new Size(94, 19);
             label10.TabIndex = 23;
@@ -292,7 +292,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Belwe Bd BT", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(62, 533);
+            label12.Location = new Point(25, 533);
             label12.Name = "label12";
             label12.Size = new Size(74, 19);
             label12.TabIndex = 25;

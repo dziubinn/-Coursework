@@ -32,25 +32,23 @@
             btnSearch = new Button();
             btnFilter = new Button();
             PanelSearch = new Panel();
+            welcomeLabel = new Label();
+            btnHome = new Button();
             SearchFilterslbl = new Label();
             TitleNamelbl = new Label();
             cmbFilterValue = new ComboBox();
             cmbFilterBy = new ComboBox();
             txtSearch = new TextBox();
-            btnHome = new Button();
             flowPanelMovies = new FlowLayoutPanel();
             lblHeader = new Label();
-            welcomeLabel = new Label();
-            panel1 = new Panel();
             PanelSearch.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnOpenFavorites
             // 
             btnOpenFavorites.Font = new Font("Belwe Bd BT", 17F, FontStyle.Regular, GraphicsUnit.Point);
             btnOpenFavorites.ForeColor = Color.Firebrick;
-            btnOpenFavorites.Location = new Point(44, 4);
+            btnOpenFavorites.Location = new Point(46, 55);
             btnOpenFavorites.Name = "btnOpenFavorites";
             btnOpenFavorites.Size = new Size(38, 36);
             btnOpenFavorites.TabIndex = 3;
@@ -61,7 +59,7 @@
             // 
             btnSearch.FlatStyle = FlatStyle.Popup;
             btnSearch.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSearch.Location = new Point(216, 80);
+            btnSearch.Location = new Point(218, 131);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(100, 23);
             btnSearch.TabIndex = 4;
@@ -73,7 +71,7 @@
             // 
             btnFilter.FlatStyle = FlatStyle.Popup;
             btnFilter.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFilter.Location = new Point(216, 277);
+            btnFilter.Location = new Point(218, 328);
             btnFilter.Name = "btnFilter";
             btnFilter.Size = new Size(100, 23);
             btnFilter.TabIndex = 7;
@@ -85,6 +83,7 @@
             // 
             PanelSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             PanelSearch.BorderStyle = BorderStyle.FixedSingle;
+            PanelSearch.Controls.Add(welcomeLabel);
             PanelSearch.Controls.Add(btnHome);
             PanelSearch.Controls.Add(btnOpenFavorites);
             PanelSearch.Controls.Add(SearchFilterslbl);
@@ -95,16 +94,40 @@
             PanelSearch.Controls.Add(btnSearch);
             PanelSearch.Controls.Add(btnFilter);
             PanelSearch.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            PanelSearch.Location = new Point(8, 67);
+            PanelSearch.Location = new Point(8, 12);
             PanelSearch.Name = "PanelSearch";
-            PanelSearch.Size = new Size(330, 484);
+            PanelSearch.Size = new Size(330, 539);
             PanelSearch.TabIndex = 5;
+            // 
+            // welcomeLabel
+            // 
+            welcomeLabel.AutoSize = true;
+            welcomeLabel.Font = new Font("Belwe Bd BT", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            welcomeLabel.Location = new Point(8, 9);
+            welcomeLabel.Name = "welcomeLabel";
+            welcomeLabel.Size = new Size(43, 26);
+            welcomeLabel.TabIndex = 10;
+            welcomeLabel.Text = "Hi!";
+            // 
+            // btnHome
+            // 
+            btnHome.BackColor = Color.Transparent;
+            btnHome.FlatAppearance.BorderSize = 0;
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Segoe UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
+            btnHome.Location = new Point(5, 54);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(46, 37);
+            btnHome.TabIndex = 9;
+            btnHome.Text = "🏠";
+            btnHome.UseVisualStyleBackColor = false;
+            btnHome.Click += btnHome_Click;
             // 
             // SearchFilterslbl
             // 
             SearchFilterslbl.AutoSize = true;
             SearchFilterslbl.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            SearchFilterslbl.Location = new Point(16, 118);
+            SearchFilterslbl.Location = new Point(18, 169);
             SearchFilterslbl.Name = "SearchFilterslbl";
             SearchFilterslbl.Size = new Size(134, 23);
             SearchFilterslbl.TabIndex = 8;
@@ -114,7 +137,7 @@
             // 
             TitleNamelbl.AutoSize = true;
             TitleNamelbl.Font = new Font("Belwe Bd BT", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TitleNamelbl.Location = new Point(16, 54);
+            TitleNamelbl.Location = new Point(18, 105);
             TitleNamelbl.Name = "TitleNamelbl";
             TitleNamelbl.Size = new Size(109, 23);
             TitleNamelbl.TabIndex = 7;
@@ -126,7 +149,7 @@
             cmbFilterValue.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cmbFilterValue.FormattingEnabled = true;
             cmbFilterValue.IntegralHeight = false;
-            cmbFilterValue.Location = new Point(16, 277);
+            cmbFilterValue.Location = new Point(18, 328);
             cmbFilterValue.Name = "cmbFilterValue";
             cmbFilterValue.Size = new Size(194, 23);
             cmbFilterValue.TabIndex = 6;
@@ -136,7 +159,7 @@
             cmbFilterBy.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cmbFilterBy.FormattingEnabled = true;
             cmbFilterBy.Items.AddRange(new object[] { "Genre", "Year", "Director", "Country", "Main actor", "Duration", "Studio" });
-            cmbFilterBy.Location = new Point(16, 142);
+            cmbFilterBy.Location = new Point(18, 193);
             cmbFilterBy.Name = "cmbFilterBy";
             cmbFilterBy.Size = new Size(194, 23);
             cmbFilterBy.TabIndex = 5;
@@ -144,33 +167,19 @@
             // 
             // txtSearch
             // 
-            txtSearch.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(16, 80);
+            txtSearch.Font = new Font("Belwe Bd BT", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearch.Location = new Point(18, 131);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(194, 23);
+            txtSearch.Size = new Size(194, 22);
             txtSearch.TabIndex = 3;
-            // 
-            // btnHome
-            // 
-            btnHome.BackColor = Color.Transparent;
-            btnHome.FlatAppearance.BorderSize = 0;
-            btnHome.FlatStyle = FlatStyle.Flat;
-            btnHome.Font = new Font("Segoe UI", 17F, FontStyle.Regular, GraphicsUnit.Point);
-            btnHome.Location = new Point(3, 3);
-            btnHome.Name = "btnHome";
-            btnHome.Size = new Size(46, 37);
-            btnHome.TabIndex = 9;
-            btnHome.Text = "🏠";
-            btnHome.UseVisualStyleBackColor = false;
-            btnHome.Click += btnHome_Click;
             // 
             // flowPanelMovies
             // 
             flowPanelMovies.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flowPanelMovies.AutoScroll = true;
-            flowPanelMovies.Location = new Point(344, 82);
+            flowPanelMovies.Location = new Point(344, 97);
             flowPanelMovies.Name = "flowPanelMovies";
-            flowPanelMovies.Size = new Size(630, 469);
+            flowPanelMovies.Size = new Size(630, 454);
             flowPanelMovies.TabIndex = 6;
             // 
             // lblHeader
@@ -183,31 +192,12 @@
             lblHeader.TabIndex = 7;
             lblHeader.Text = "All Movies";
             // 
-            // welcomeLabel
-            // 
-            welcomeLabel.AutoSize = true;
-            welcomeLabel.Font = new Font("Belwe Bd BT", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            welcomeLabel.Location = new Point(4, 9);
-            welcomeLabel.Name = "welcomeLabel";
-            welcomeLabel.Size = new Size(43, 26);
-            welcomeLabel.TabIndex = 10;
-            welcomeLabel.Text = "Hi!";
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(welcomeLabel);
-            panel1.Location = new Point(8, 13);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(330, 48);
-            panel1.TabIndex = 11;
-            // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(974, 563);
-            Controls.Add(panel1);
             Controls.Add(lblHeader);
             Controls.Add(flowPanelMovies);
             Controls.Add(PanelSearch);
@@ -217,8 +207,6 @@
             FormClosing += MainForm_FormClosing;
             PanelSearch.ResumeLayout(false);
             PanelSearch.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

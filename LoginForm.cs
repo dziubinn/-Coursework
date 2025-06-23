@@ -11,8 +11,13 @@ using System.Windows.Forms;
 
 namespace Сoursework
 {
+    /// <summary>
+    /// Форма авторизації користувача, що дозволяє увійти як звичайний користувач, зареєструвати новий акаунт або увійти як адміністратор.
+    /// Підтримує клавіатурні скорочення для зручної навігації.
+    /// </summary>
     public partial class LoginForm : Form
     {
+        /// <summary>Ініціалізує форму авторизації та встановлює позицію на екрані, а також обробку клавіш.</summary>
         public LoginForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -20,6 +25,13 @@ namespace Сoursework
             this.KeyPreview = true;
             this.KeyDown += LoginForm_KeyDown;
         }
+
+        /// <summary>
+        /// Обробляє натискання клавіш Enter, Escape і F1:
+        /// — Enter: виконує спробу входу;
+        /// — Escape: запитує підтвердження на вихід;
+        /// — F1: виводить довідкове повідомлення.
+        /// </summary>
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -42,6 +54,8 @@ namespace Сoursework
             }
         }
 
+
+        /// <summary>Обробник кнопки входу: перевіряє логін і пароль, виконує авторизацію або виводить повідомлення про помилку.</summary>
         private void loginBtn_Click(object sender, EventArgs e)
         {
             string enteredLogin = loginTextBox.Text.Trim();
@@ -70,12 +84,16 @@ namespace Сoursework
                 MessageBox.Show("Invalid login or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>Відкриває форму реєстрації нового користувача.</summary>
         private void registerBtn_Click(object sender, EventArgs e)
         {
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
             this.Hide();
         }
+
+        /// <summary>Відкриває головну форму в режимі адміністратора.</summary>
         private void adminBtn_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
