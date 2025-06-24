@@ -507,10 +507,10 @@ namespace Сoursework
                 flowPanelMovies.Controls.Clear();
                 Label noResults = new Label
                 {
-                    Text = "Фільми не знайдені",
+                    Text = "No movies found",
                     AutoSize = true,
                     ForeColor = Color.Red,
-                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Font = new Font("Belwe Bd BT", 12),
                     Padding = new Padding(10)
                 };
                 flowPanelMovies.Controls.Add(noResults);

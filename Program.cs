@@ -8,7 +8,7 @@ namespace Сoursework
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware); // или PerMonitor, в зависимости от настроек
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
